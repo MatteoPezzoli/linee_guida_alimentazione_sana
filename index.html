@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mangio Bene – Alimentazione Sana CREA 2018</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --verde-salvia: #4A7C59;
+      --verde-chiaro: #8DB87A;
+      --arancio-caldo: #E07B39;
+      --crema: #FDF6EC;
+      --grigio-testo: #2D3748;
+      --grigio-leggero: #F7F3EE;
+      --bianco: #FFFFFF;
+      --bordo: #E8DDD0;
+      --rosso: #C0392B;
+      --blu: #2980B9;
+      --viola: #8E44AD;
+      --giallo: #D4A017;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--crema);
+      color: var(--grigio-testo);
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    header {
+      background: var(--verde-salvia);
+      color: var(--bianco);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 14px 20px 0;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .header-logo {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-subtitle {
+      font-size: 11px;
+      opacity: 0.8;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─── TABS ───────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      gap: 0;
+    }
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 8px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn.active {
+      color: #fff;
+      border-bottom-color: var(--arancio-caldo);
+    }
+    .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.9); }
+
+    /* ─── MAIN CONTENT ───────────────────────────────── */
+    main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .tab-panel { display: none; animation: fadeIn 0.2s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ─── CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--bianco);
+      border-radius: 16px;
+      border: 1px solid var(--bordo);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--verde-salvia);
+      margin-bottom: 4px;
+    }
+    .card-emoji { font-size: 32px; margin-bottom: 10px; display: block; }
+
+    /* ─── BADGE ──────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .badge-verde    { background: #E3F4E9; color: #2D7A4A; }
+    .badge-arancio  { background: #FEF0E6; color: #B55A1A; }
+    .badge-blu      { background: #E6F2FB; color: #1A6A9A; }
+    .badge-viola    { background: #F2EAF9; color: #6A2F8A; }
+    .badge-giallo   { background: #FBF6E3; color: #8A6A00; }
+    .badge-rosso    { background: #FDEAEA; color: #9A1A1A; }
+    .badge-grigio   { background: #F0EEEC; color: #4A4540; }
+    .badge-menta    { background: #E6F6F3; color: #1A7A6A; }
+
+    /* ─── BUTTONS ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--verde-salvia);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(74,124,89,0.3);
+    }
+    .btn-primary:hover { background: #3D6A4B; box-shadow: 0 4px 12px rgba(74,124,89,0.4); }
+    .btn-secondary {
+      background: var(--grigio-leggero);
+      color: var(--grigio-testo);
+      border: 1px solid var(--bordo);
+    }
+    .btn-secondary:hover { background: var(--bordo); }
+    .btn-arancio {
+      background: var(--arancio-caldo);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(224,123,57,0.3);
+    }
+    .btn-arancio:hover { background: #C06428; }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* ─── CONSIGLIO DEL GIORNO ───────────────────────── */
+    #consiglio-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #consiglio-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--verde-salvia);
+      margin-bottom: 4px;
+    }
+    #consiglio-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .consiglio-card { position: relative; }
+    #consiglio-emoji { font-size: 48px; display: block; text-align: center; margin-bottom: 12px; }
+    #consiglio-titolo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--grigio-testo);
+      margin-bottom: 14px;
+    }
+    #consiglio-testo {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 16px;
+    }
+    .consiglio-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--verde-salvia);
+      margin-bottom: 6px;
+    }
+    #consiglio-perche {
+      background: var(--grigio-leggero);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 14px;
+    }
+    #consiglio-cosa-fare {
+      list-style: none;
+    }
+    #consiglio-cosa-fare li {
+      padding: 7px 0 7px 24px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.5;
+      border-bottom: 1px solid var(--bordo);
+    }
+    #consiglio-cosa-fare li:last-child { border-bottom: none; }
+    #consiglio-cosa-fare li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--verde-chiaro);
+      font-weight: 700;
+    }
+
+    /* ─── LINEE GUIDA ────────────────────────────────── */
+    .linee-guida-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    @media (max-width: 440px) { .linee-guida-grid { grid-template-columns: 1fr; } }
+    .lg-item {
+      background: var(--grigio-leggero);
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid var(--bordo);
+    }
+    .lg-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--verde-salvia);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lg-titolo { font-weight: 600; font-size: 13px; margin: 3px 0 4px; }
+    .lg-desc { font-size: 12px; color: #666; line-height: 1.5; }
+
+    /* ─── PROFILO SELECTOR ───────────────────────────── */
+    .profilo-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grigio-testo);
+      margin-bottom: 8px;
+    }
+    .profilo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .profilo-btn {
+      background: var(--grigio-leggero);
+      border: 2px solid var(--bordo);
+      border-radius: 10px;
+      padding: 12px 10px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.15s;
+      color: var(--grigio-testo);
+    }
+    .profilo-btn .profilo-emoji { display: block; font-size: 22px; margin-bottom: 4px; }
+    .profilo-btn.selected {
+      border-color: var(--verde-salvia);
+      background: #E8F4EC;
+      color: var(--verde-salvia);
+    }
+    .profilo-btn:hover:not(.selected) { border-color: var(--verde-chiaro); background: #F0F8F2; }
+
+    /* ─── PIANO SETTIMANALE ──────────────────────────── */
+    .settimana-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .settimana-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--verde-salvia);
+    }
+
+    .giorno-card {
+      background: var(--bianco);
+      border-radius: 14px;
+      border: 1px solid var(--bordo);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .giorno-header {
+      background: var(--verde-salvia);
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .giorno-nome {
+      font-weight: 600;
+      font-size: 14px;
+      flex: 1;
+    }
+    .giorno-chevron {
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+    .giorno-card.open .giorno-chevron { transform: rotate(180deg); }
+    .giorno-body { display: none; padding: 14px 16px; }
+    .giorno-card.open .giorno-body { display: block; }
+
+    .pasto-row {
+      display: flex;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--bordo);
+      align-items: flex-start;
+    }
+    .pasto-row:last-child { border-bottom: none; }
+    .pasto-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #999;
+      min-width: 90px;
+      padding-top: 2px;
+    }
+    .pasto-desc {
+      font-size: 14px;
+      color: var(--grigio-testo);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* ─── RIEPILOGO VISIVO ───────────────────────────── */
+    .riepilogo-card { margin-top: 4px; }
+    .riepilogo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--grigio-testo);
+      margin-bottom: 16px;
+    }
+    .obiettivo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 400px) { .obiettivo-grid { grid-template-columns: 1fr; } }
+    .obiettivo-item {
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+    .obiettivo-item.verde  { background: #E3F4E9; border-color: #6CBF80; }
+    .obiettivo-item.arancio { background: #FEF0E6; border-color: #E8A06A; }
+    .obiettivo-item.rosso  { background: #FDEAEA; border-color: #D97575; }
+    .obiettivo-emoji { font-size: 26px; display: block; margin-bottom: 4px; }
+    .obiettivo-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .obiettivo-item.verde  .obiettivo-num { color: #2D7A4A; }
+    .obiettivo-item.arancio .obiettivo-num { color: #B55A1A; }
+    .obiettivo-item.rosso  .obiettivo-num { color: #9A1A1A; }
+    .obiettivo-label { font-size: 11px; font-weight: 600; color: #555; margin-top: 3px; }
+    .obiettivo-target { font-size: 10px; color: #888; margin-top: 2px; }
+    .obiettivo-status { font-size: 18px; margin-top: 4px; }
+
+    /* ─── NOTA GRAVIDANZA ────────────────────────────── */
+    .nota-gravidanza {
+      background: #FFF8E1;
+      border: 1px solid #FFD54F;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #5D4037;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .nota-gravidanza.visible { display: block; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 32px;
+      text-align: center;
+      font-size: 11px;
+      color: #999;
+      line-height: 1.7;
+    }
+    footer a { color: var(--verde-salvia); text-decoration: none; }
+
+    /* ─── UTILITY ────────────────────────────────────── */
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--grigio-testo);
+      margin-bottom: 12px;
+    }
+    .text-muted { color: #888; font-size: 13px; }
+    .mt-4 { margin-top: 16px; }
+    .mb-2 { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <span class="header-logo">🥗</span>
+      <div>
+        <div class="header-title">Mangio Bene</div>
+        <div class="header-subtitle">Linee Guida CREA 2018</div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" data-tab="consiglio">🗓️ Consiglio del Giorno</button>
+      <button class="tab-btn" role="tab" data-tab="settimana">📋 Pianifica la Settimana</button>
+      <button class="tab-btn" role="tab" data-tab="linee-guida">📖 Le 13 Direttive</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<main>
+
+  <!-- ── TAB 1: CONSIGLIO DEL GIORNO ─────────── -->
+  <div class="tab-panel active" id="tab-consiglio" role="tabpanel">
+    <div id="consiglio-header">
+      <h2>Il Consiglio di Oggi</h2>
+      <p id="data-oggi" class="text-muted"></p>
+    </div>
+
+    <div class="card consiglio-card">
+      <span id="consiglio-emoji">🥦</span>
+      <div id="consiglio-badge-wrap"></div>
+      <div id="consiglio-titolo">Titolo consiglio</div>
+      <div id="consiglio-testo">Testo consiglio...</div>
+
+      <div class="consiglio-section-label">Perché è importante</div>
+      <div id="consiglio-perche">Motivazione...</div>
+
+      <div class="consiglio-section-label">Cosa fare concretamente</div>
+      <ul id="consiglio-cosa-fare"></ul>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="btn-altro-consiglio">🔀 Altro consiglio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB 2: PIANIFICA LA SETTIMANA ───────── -->
+  <div class="tab-panel" id="tab-settimana" role="tabpanel">
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="section-heading" style="margin-bottom:12px;">Il tuo profilo</div>
+      <div class="profilo-label">Seleziona il profilo alimentare:</div>
+      <div class="profilo-grid" id="profilo-grid">
+        <button class="profilo-btn selected" data-profilo="adulto">
+          <span class="profilo-emoji">🧑</span>Adulto
+        </button>
+        <button class="profilo-btn" data-profilo="anziano">
+          <span class="profilo-emoji">👴</span>Anziano / Over 65
+        </button>
+        <button class="profilo-btn" data-profilo="sportivo">
+          <span class="profilo-emoji">🏃</span>Sportivo
+        </button>
+        <button class="profilo-btn" data-profilo="gravidanza">
+          <span class="profilo-emoji">🤰</span>In gravidanza
+        </button>
+      </div>
+
+      <div class="nota-gravidanza" id="nota-gravidanza">
+        ⚠️ <strong>Nota importante:</strong> Il piano mostrato è indicativo e basato sulle raccomandazioni generali CREA.
+        Consulta sempre il tuo medico o un professionista della nutrizione per adattamenti specifici durante la gravidanza.
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-genera">🔄 Genera piano settimanale</button>
+        <button class="btn btn-arancio" id="btn-esporta">📥 Esporta come testo</button>
+      </div>
+    </div>
+
+    <div id="piano-container">
+      <div class="settimana-header">
+        <span class="settimana-title" id="settimana-label">Piano Alimentare Settimanale</span>
+      </div>
+      <div id="giorni-list"></div>
+    </div>
+
+    <!-- Riepilogo visivo -->
+    <div class="card riepilogo-card" id="riepilogo-card" style="display:none;">
+      <div class="riepilogo-title">📊 Il mio Piano a Colpo d'Occhio</div>
+      <div class="obiettivo-grid">
+        <div class="obiettivo-item" id="ob-verdura">
+          <span class="obiettivo-emoji">🥦</span>
+          <div class="obiettivo-num" id="ob-verdura-num">0</div>
+          <div class="obiettivo-label">Verdura &amp; Frutta</div>
+          <div class="obiettivo-target">Obiettivo: ≥35/sett.</div>
+          <div class="obiettivo-status" id="ob-verdura-icon"></div>
+        </div>
+        <div class="obiettivo-item" id="ob-pesce">
+          <span class="obiettivo-emoji">🐟</span>
+          <div class="obiettivo-num" id="ob-pesce-num">0</div>
+          <div class="obiettivo-label">Porzioni Pesce</div>
+          <div class="obiettivo-target">Obiettivo: 2-3/sett.</div>
+          <div class="obiettivo-status" id="ob-pesce-icon"></div>
+        </div>
+        <div class="obiettivo-item" id="ob-legumi">
+          <span class="obiettivo-emoji">🫘</span>
+          <div class="obiettivo-num" id="ob-legumi-num">0</div>
+          <div class="obiettivo-label">Porzioni Legumi</div>
+          <div class="obiettivo-target">Obiettivo: 4-6/sett.</div>
+          <div class="obiettivo-status" id="ob-legumi-icon"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TAB 3: LE 10 REGOLE ──────────────────── -->
+  <div class="tab-panel" id="tab-linee-guida" role="tabpanel">
+    <div style="text-align:center; margin-bottom:20px;">
+      <h2 style="font-family:'Playfair Display',serif; color:var(--verde-salvia); font-size:22px; margin-bottom:4px;">Le 13 Direttive CREA</h2>
+      <p class="text-muted">Linee Guida per una Sana Alimentazione – CREA 2018</p>
+    </div>
+    <div id="linee-guida-list"></div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <p>🥗 <strong>Mangio Bene</strong> — basata sulle Linee Guida per una Sana Alimentazione CREA 2018</p>
+  <p>Fonte: Centro di Ricerca Alimenti e Nutrizione (CREA) – Revisione 2018 (agg. novembre 2019)</p>
+  <p>⚕️ Questa app è a scopo informativo e <strong>non sostituisce il parere di un medico o nutrizionista</strong>.</p>
+</footer>
+
+<!-- ═══════════════════ SCRIPT ═══════════════════ -->
+<script>
+'use strict';
+
+// ──────────────────────────────────────────────────────────────
+// DATI: LINEE GUIDA PRINCIPALI
+// ──────────────────────────────────────────────────────────────
+const LINEE_GUIDA = [
+  {
+    num: 1, emoji: '⚖️',
+    titolo: 'Controlla il peso e mantieniti sempre attivo',
+    regola: 'Bilancia calorie introdotte e consumate.',
+    desc: 'Mantieniti fisicamente attivo almeno 30 minuti al giorno. Evita le diete drastiche "fai da te", quasi sempre squilibrate. Distribuisci l\'alimentazione lungo tutta la giornata a partire dalla prima colazione, che non va trascurata. Il peso ideale si mantiene con equilibrio e gradualità, non con privazioni.'
+  },
+  {
+    num: 2, emoji: '🍎',
+    titolo: 'Più frutta e verdura',
+    regola: 'Più porzioni al giorno, di colori diversi, preferibilmente di stagione.',
+    desc: 'Consuma quotidianamente più porzioni di verdura e frutta fresca, scegliendo colori diversi ogni giorno. Ogni sfumatura indica fitonutrienti diversi e complementari. Preferisci la frutta intera al succo: è più ricca di fibra e ha un maggiore potere saziante. Usa frutta e verdura anche come spuntino.'
+  },
+  {
+    num: 3, emoji: '🌾',
+    titolo: 'Più cereali integrali e legumi',
+    regola: 'Cereali integrali ogni giorno; legumi alternati alle proteine animali.',
+    desc: 'Consuma regolarmente pane, pasta, riso ed altri cereali, preferibilmente integrali. Aumenta il consumo di legumi (fagioli, ceci, lenticchie) alternandoli alle fonti proteiche animali (carne, pesce, uova, latticini). I cereali integrali apportano fibra, vitamine del gruppo B e aumentano il senso di sazietà. Si raccomanda che almeno metà delle porzioni di cereali siano integrali.'
+  },
+  {
+    num: 4, emoji: '💧',
+    titolo: 'Bevi ogni giorno acqua in abbondanza',
+    regola: '1,5–2 litri al giorno (6-8 bicchieri), anticipando lo stimolo della sete.',
+    desc: 'Asseconda sempre il senso di sete e anzi tenta di anticiparlo, bevendo a sufficienza durante e tra i pasti. L\'equilibrio idrico va mantenuto bevendo principalmente acqua — sia del rubinetto che in bottiglia, entrambe sicure. Bevande come aranciate, succhi di frutta e caffè apportano anche altre sostanze (zuccheri, caffeina) e vanno usate con moderazione. Bambini e anziani sono più esposti al rischio di disidratazione.'
+  },
+  {
+    num: 5, emoji: '🫒',
+    titolo: 'Grassi: scegli quali e limita la quantità',
+    regola: 'Preferire olio EVO; limitare grassi animali e tropicali; pesce 2-3 volte/settimana.',
+    desc: 'Modera la quantità di grassi e oli usati per condire e cucinare. Tra i grassi da condimento limita quelli di origine animale (burro, lardo, panna) o ad elevato contenuto di saturi (oli tropicali). Preferisci l\'olio extravergine di oliva, usato preferibilmente a crudo. Mangia pesce almeno 2-3 volte a settimana, scegliendo pesce azzurro nostrano. Puoi consumare 2-4 uova a settimana, distribuite in più giorni.'
+  },
+  {
+    num: 6, emoji: '🍬',
+    titolo: 'Zuccheri, dolci e bevande zuccherate: meno è meglio',
+    regola: 'Max 10% delle calorie da zuccheri liberi; limitare bevande zuccherate.',
+    desc: 'Modera il consumo di alimenti e bevande dolci nella giornata. Limita il consumo di bevande zuccherate (aranciate, cola, succhi industriali): le calorie liquide non saziano e rischiano di sommarsi a quelle già presenti nella dieta. Preferisci prodotti da forno meno grassi e meno zuccherati. Non ridurre il consumo di frutta o latte, importanti per la salute indipendentemente dal loro contenuto di zuccheri naturali.'
+  },
+  {
+    num: 7, emoji: '🧂',
+    titolo: 'Il sale? Meno è meglio',
+    regola: 'Max 5 g/giorno; riduzione graduale e uso di erbe aromatiche.',
+    desc: 'Riduci progressivamente l\'uso di sale sia a tavola che in cucina. Esalta il sapore dei cibi con succo di limone, aceto, aglio, cipolla, sedano, basilico, rosmarino, origano, peperoncino e spezie. Scegli prodotti a basso contenuto di sale dove disponibili. Togli la saliera dalla tavola. Consuma solo saltuariamente alimenti ricchi di sale (snack, salumi, formaggi stagionati): sono fonti nascoste di sodio.'
+  },
+  {
+    num: 8, emoji: '🍷',
+    titolo: 'Bevande alcoliche: il meno possibile',
+    regola: 'Regola 2-1-0: max 2 UA/giorno uomini, 1 UA donne/anziani, 0 sotto i 18 anni.',
+    desc: 'Se non si beve, è bene non iniziare: non esiste un consumo di alcol completamente esente da rischi. Il consumo compatibile con un "basso rischio" è: fino a 2 unità alcoliche al giorno per l\'uomo adulto sano, 1 per la donna o per chi ha più di 65 anni, zero assoluto sotto i 18 anni, in gravidanza e allattamento, se si guidano veicoli o si assumono farmaci. Una unità alcolica equivale a circa 125 ml di vino a 12° o 330 ml di birra a 5°.'
+  },
+  {
+    num: 9, emoji: '🌈',
+    titolo: 'Varia la tua alimentazione: come e perché',
+    regola: 'Alternare tutti i gruppi alimentari; non saltare la colazione; ridurre il consumo di carne.',
+    desc: 'Scegli quantità adeguate di alimenti appartenenti a tutti i diversi gruppi, alternandoli nei vari pasti della giornata. Fai tutti i giorni un\'adeguata prima colazione. Riduci il consumo di carne. Aumenta la varietà e la quantità degli alimenti di origine vegetale. Evita di stare a digiuno a lungo: uno spuntino non impegnativo (un frutto) mantiene l\'attenzione e la concentrazione. Mangia a tavola, non alla scrivania: chi mangia distratto tende a consumare di più nel corso della giornata.'
+  },
+  {
+    num: 10, emoji: '👨‍👩‍👧',
+    titolo: 'Consigli speciali per categorie particolari',
+    regola: 'Gravidanza, allattamento, anziani, sportivi e bambini hanno bisogni specifici.',
+    desc: 'Gravidanza: mangiare "due volte meglio", non "per due". Sono critici folati (supplementa acido folico da prima del concepimento), ferro, calcio, iodio e omega-3 (dal pesce). Zero alcol assoluto. Evitare carni crude, pesce crudo, uova crude, latte crudo e formaggi a pasta molle non pastorizzata. Anziani: aumenta l\'apporto proteico per prevenire la sarcopenia; bevi frequentemente anche senza sete. Sportivi: più carboidrati complessi per l\'energia; proteine per il recupero. In tutti i casi, affidarsi a un medico o nutrizionista per adattamenti specifici.'
+  },
+  {
+    num: 11, emoji: '⚠️',
+    titolo: 'Attenti alle diete e agli integratori senza basi scientifiche',
+    regola: 'Affidarsi a professionisti qualificati; non usare integratori di propria iniziativa.',
+    desc: 'Affidati sempre a personale qualificato con competenze di nutrizione per perdere peso. Non esistono la "dieta di…" o il "superfood" miracoloso. Anche in dieta, tutti gli alimenti devono essere presenti in quantità appropriate: eliminare pane e pasta non serve, conta la riduzione globale delle calorie. Non saltare la prima colazione. Non prendere integratori di propria iniziativa: possono completare una dieta carente, ma non sostituire un\'alimentazione sana ed equilibrata. Evita le diete monocibo, le diete iperproteiche, il digiuno prolungato e qualsiasi regime prescritto senza valutazione clinica individuale.'
+  },
+  {
+    num: 12, emoji: '🧊',
+    titolo: 'La sicurezza degli alimenti dipende anche da te',
+    regola: 'Rispetta la catena del freddo, le date di scadenza e le norme igieniche.',
+    desc: 'Lava sempre frutta e verdura sotto acqua corrente prima di consumarle. Rispetta le date di scadenza e le temperature di conservazione (frigorifero ≤ 4 °C). Non lasciare cibi cotti a temperatura ambiente per più di 2 ore (1 ora in estate). Scongela gli alimenti in frigorifero, non a temperatura ambiente. Separa sempre carne e pesce crudi dagli altri alimenti in frigorifero. Lavati le mani prima di cucinare e dopo aver toccato cibi crudi.'
+  },
+  {
+    num: 13, emoji: '🌍',
+    titolo: 'Sostenibilità delle diete: tutti possiamo contribuire',
+    regola: 'Più vegetali, meno carne, zero spreco, acqua del rubinetto, stagionalità.',
+    desc: 'Combina nella tua dieta tanti alimenti vegetali (frutta, verdura, legumi, cereali integrali) con pochi prodotti animali. Modera il consumo di carne — soprattutto rossa e bovina — preferendo pollame, pesce e legumi. Scegli prodotti di stagione: costano meno, sono più buoni e riducono l\'impatto ambientale. Combatti lo spreco: programma la spesa, ricicla gli avanzi, congela prima che i cibi vadano a male. Scegli l\'acqua del rubinetto: è ottima e riduce l\'impatto delle bottiglie di plastica. La dieta mediterranea — ricca di vegetali, legumi e cereali, con poca carne — è riconosciuta come uno dei modelli alimentari più sostenibili al mondo.'
+  }
+];
+
+// ──────────────────────────────────────────────────────────────
+// DATI: PORZIONI DI RIFERIMENTO CREA
+// ──────────────────────────────────────────────────────────────
+const PORZIONI = {
+  cereali:           { standard: '80 g pasta/riso crudi, 50 g pane, 2 fette biscottate', frequenza: '1-2 per pasto principale' },
+  legumi:            { standard: '150 g cotti (50 g secchi)', frequenza: '2-3 volte/settimana' },
+  verdura:           { standard: '200 g cotta, 80 g insalata cruda', frequenza: '2+ porzioni/giorno' },
+  frutta:            { standard: '150 g (1 frutto medio)', frequenza: '2-3 porzioni/giorno' },
+  carne_bianca:      { standard: '100 g cotta', frequenza: '2-3 volte/settimana' },
+  carne_rossa:       { standard: '100 g cotta', frequenza: 'max 1 volta/settimana' },
+  pesce:             { standard: '150 g cotto', frequenza: '2-3 volte/settimana' },
+  uova:              { standard: '1-2 uova', frequenza: '2-4 uova/settimana' },
+  formaggi_freschi:  { standard: '100 g', frequenza: '2-3 volte/settimana' },
+  formaggi_stagionati: { standard: '50 g', frequenza: '1-2 volte/settimana' },
+  latte_yogurt:      { standard: '125 ml latte / 1 vasetto yogurt (125 g)', frequenza: '1-2 porzioni/giorno' },
+  olio_evo:          { standard: '10 ml (1 cucchiaio)', frequenza: '2-3 cucchiai/giorno max' },
+  dolci:             { standard: '1 porzione piccola', frequenza: 'occasionale' }
+};
+
+// ──────────────────────────────────────────────────────────────
+// DATI: CONSIGLI GIORNALIERI (30 consigli)
+// ──────────────────────────────────────────────────────────────
+const CONSIGLI = [
+  // FRUTTA E VERDURA (6)
+  {
+    id: 1, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🥦',
+    titolo: 'Colora il tuo piatto',
+    consiglio: 'Mangia frutta e verdura di colori diversi ogni giorno. Il principio del "mangia l\'arcobaleno" non è solo estetico: ogni pigmento vegetale nasconde un diverso gruppo di fitonutrienti protettivi.',
+    perche: 'I carotenoidi (arancione-giallo), le antocianine (blu-viola), la clorofilla (verde) e i flavonoidi (rosso) svolgono azioni antiossidanti e antinfiammatorie complementari tra loro. La varietà cromatica è il modo più semplice per coprire lo spettro completo.',
+    cosa_fare: ['Aggiungi pomodorini e carote come spuntino', 'Usa gli spinaci nella pasta o nelle frittate', 'Scegli frutta di stagione alternando fragole, mirtilli, pesche e kiwi', 'Prepara un\'insalata mista multicolore a pranzo']
+  },
+  {
+    id: 2, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🍅',
+    titolo: 'Cinque porzioni al giorno',
+    consiglio: 'Le Linee Guida CREA raccomandano almeno 5 porzioni di frutta e verdura al giorno: 2 di frutta e 3 di verdura. Non è difficile: distribuiscile durante la giornata in piccoli momenti.',
+    perche: 'Raggiungere le 5 porzioni riduce il rischio di malattie cardiovascolari, alcuni tipi di tumore e contribuisce al mantenimento del peso corporeo grazie all\'elevato contenuto di fibra e acqua rispetto alle calorie.',
+    cosa_fare: ['Colazione: 1 frutto fresco', 'Spuntino: carote o finocchi crudi', 'Pranzo: insalata abbondante + 1 frutto', 'Cena: verdura cotta come contorno + una manciata di pomodorini']
+  },
+  {
+    id: 3, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🌿',
+    titolo: 'Verdura di stagione: più nutrienti, meno costo',
+    consiglio: 'Scegliere verdure di stagione significa consumarle al massimo del loro valore nutrizionale, al prezzo più basso e con minor impatto ambientale. La filiera corta è amica della salute e del portafoglio.',
+    perche: 'Le verdure fuori stagione vengono spesso raccolte prima della maturazione e trasportate per migliaia di chilometri, perdendo una quota significativa di vitamine (in particolare vitamina C e folati, termolabili e ossidabili).',
+    cosa_fare: ['Estate: pomodori, zucchine, peperoni, melanzane, cetrioli', 'Autunno: zucca, broccoli, cavolfiore, funghi', 'Inverno: cavolo, radicchio, finocchi, arance, kiwi', 'Primavera: asparagi, piselli, carciofi, fragole']
+  },
+  {
+    id: 4, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🍋',
+    titolo: 'La frutta non è solo dessert',
+    consiglio: 'La frutta è un alimento completo che può sostituire spuntini confezionati, essere aggiunta a yogurt o fiocchi d\'avena, o abbinata a insalate salate per creare contrasti di sapore interessanti e nutrienti.',
+    perche: 'La frutta fresca apporta vitamine (C, A, folati), minerali (potassio), antiossidanti e fibra. I suoi zuccheri naturali sono accompagnati da fibra che rallenta l\'assorbimento glicemico, rendendola molto diversa dai dolci o dalle bevande zuccherate.',
+    cosa_fare: ['Aggiungi mela o pera a cubetti nell\'insalata di rucola', 'Frulla un frutto fresco con yogurt per uno spuntino cremoso', 'Sostituisci le merendine con 1 frutto di stagione', 'Usa il succo di limone fresco per condire verdure e pesci']
+  },
+  {
+    id: 5, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🥗',
+    titolo: 'L\'insalata non è solo lattuga',
+    consiglio: 'Un\'insalata ben costruita può essere un pasto completo ed equilibrato. Combina foglie diverse, aggiungi proteine (legumi, uova, tonno), cereali (farro, orzo), grassi buoni (olio EVO, avocado) e colore con verdure crude.',
+    perche: 'L\'insalata "completa" garantisce un pasto bilanciato in macronutrienti, ricco di fibra, con bassa densità calorica e alto potere saziante. È uno dei modi più pratici per rispettare le linee guida senza dover cucinare a lungo.',
+    cosa_fare: ['Base: mix di rucola, spinacino, radicchio', 'Proteine: ceci, tonno al naturale, uovo sodo', 'Cereali: farro o orzo già cotto e raffreddato', 'Condimento: 1 cucchiaio di olio EVO + aceto di mele o succo di limone']
+  },
+  {
+    id: 6, categoria: 'Frutta e Verdura', badge: 'badge-verde', emoji: '🫐',
+    titolo: 'Frutta secca: alleata del cuore',
+    consiglio: 'Non confonderla con i snack salati! La frutta secca a guscio (noci, mandorle, nocciole) è un alimento altamente nutriente, da consumare in piccole quantità (30 g) come spuntino o aggiunta ai pasti.',
+    perche: 'Le noci sono ricche di acidi grassi omega-3 vegetali (ALA), vitamina E, magnesio e polifenoli. Studi scientifici dimostrano che un consumo regolare (ma moderato) riduce il rischio cardiovascolare e i livelli di colesterolo LDL.',
+    cosa_fare: ['1 manciata di noci o mandorle (30 g) come spuntino', 'Aggiungi mandorle a lamelle all\'insalata', 'Evita frutta secca salata, ricoperta di zucchero o arrostita con olio', 'Non superare i 30 g al giorno per l\'elevato apporto calorico']
+  },
+  // CEREALI E LEGUMI (4)
+  {
+    id: 7, categoria: 'Cereali e Legumi', badge: 'badge-arancio', emoji: '🌾',
+    titolo: 'Integrali: la scelta saggia',
+    consiglio: 'Sostituire i cereali raffinati con quelli integrali è uno dei cambiamenti più semplici e d\'impatto che puoi fare. Non serve rinunciare a pasta, pane o riso: basta scegliere la versione integrale.',
+    perche: 'I cereali integrali conservano il germe e la crusca, ricchi di fibra, vitamina B1, B3, B6, magnesio, zinco e ferro. La fibra rallenta l\'assorbimento degli zuccheri, aiuta la regolarità intestinale e aumenta il senso di sazietà.',
+    cosa_fare: ['Sostituisci la pasta bianca con quella integrale gradualmente (mix 50/50 all\'inizio)', 'Scegli pane integrale o di segale', 'Prova il riso integrale, il farro, l\'orzo o il kamut', 'Leggi l\'etichetta: il primo ingrediente deve essere "farina integrale"']
+  },
+  {
+    id: 8, categoria: 'Cereali e Legumi', badge: 'badge-arancio', emoji: '🫘',
+    titolo: 'I legumi: proteine vegetali per eccellenza',
+    consiglio: 'Ceci, lenticchie, fagioli, piselli e fave sono fonti proteiche vegetali eccellenti, economiche e versatili. Le Linee Guida CREA raccomandano 2-3 porzioni a settimana come sostituto della carne.',
+    perche: 'I legumi apportano proteine (18-25 g per 100 g secchi), fibra solubile e insolubile, ferro, zinco, folati e carboidrati a basso indice glicemico. Riducono il colesterolo LDL e migliorano il microbiota intestinale.',
+    cosa_fare: ['Prepara una zuppa di lenticchie o fagioli', 'Aggiungi i ceci all\'insalata o alla pasta', 'Prova l\'hummus di ceci come salsa per verdure crude', 'Se usi legumi in scatola, sciacquali bene sotto acqua corrente']
+  },
+  {
+    id: 9, categoria: 'Cereali e Legumi', badge: 'badge-arancio', emoji: '🍚',
+    titolo: 'La pasta: un alleato, non un nemico',
+    consiglio: 'La pasta è un alimento tipicamente italiano con un indice glicemico moderato (specie se al dente) e costituisce la base della dieta mediterranea. Il problema non è la pasta, ma le quantità eccessive e i condimenti troppo ricchi.',
+    perche: 'Una porzione di pasta (80 g cruda) apporta circa 270 kcal, carboidrati a lento rilascio e proteine (10-12 g). Condita con pomodoro, verdure e legumi è un pasto completo ed equilibrato, perfettamente in linea con le linee guida.',
+    cosa_fare: ['Rispetta la porzione standard: 80 g (cruda) per adulto', 'Preferisci condimenti leggeri: pomodoro, verdure, pesce, legumi', 'Cuocila al dente per abbassare l\'indice glicemico', 'Non sentirti in colpa: la dieta mediterranea si basa sui cereali!']
+  },
+  {
+    id: 10, categoria: 'Cereali e Legumi', badge: 'badge-arancio', emoji: '🥣',
+    titolo: 'Cereali alternativi: esplora la varietà',
+    consiglio: 'Farro, orzo, avena, miglio, quinoa e amaranto sono cereali antichi o pseudo-cereali che offrono profili nutrizionali diversi dal grano. Alternarli arricchisce la dieta e riduce la monotonia.',
+    perche: 'L\'avena contiene beta-glucani (fibra solubile) che riducono il colesterolo. Il farro e l\'orzo hanno più fibra del grano. La quinoa è un "pseudo-cereale" con aminoacidi essenziali completi, ideale per chi segue un\'alimentazione vegetale.',
+    cosa_fare: ['Prova i fiocchi d\'avena a colazione con frutta e yogurt', 'Usa l\'orzo perlato nella minestra al posto del riso', 'Prepara un\'insalata di farro con tonno e verdure', 'Sostituisci il riso bianco con la quinoa nel risotto']
+  },
+  // PROTEINE (5)
+  {
+    id: 11, categoria: 'Proteine', badge: 'badge-blu', emoji: '🐟',
+    titolo: 'Il pesce: oro del Mediterraneo',
+    consiglio: 'Il pesce dovrebbe essere in tavola almeno 2-3 volte a settimana. Non solo il pesce azzurro (sardine, sgombro, acciughe), ma anche merluzzo, orata, spigola, trota e salmone. Varietà è la parola chiave.',
+    perche: 'Il pesce è ricco di proteine ad alto valore biologico, omega-3 a lunga catena (EPA e DHA), vitamina D, iodio e selenio. Gli omega-3 riducono i trigliceridi, proteggono il cuore e supportano la funzione cerebrale.',
+    cosa_fare: ['Inserisci il pesce in almeno 2 cene settimanali', 'Prova sardine o sgombro al forno: economici e nutrienti', 'Usa il tonno al naturale (non sott\'olio) per insalate veloci', 'Cuoci il pesce al vapore, al forno o al cartoccio per non aggiungere grassi']
+  },
+  {
+    id: 12, categoria: 'Proteine', badge: 'badge-blu', emoji: '🍗',
+    titolo: 'Carne: preferisci quella bianca',
+    consiglio: 'Pollo, tacchino e coniglio sono le carni più indicate per un consumo frequente (2-3 volte a settimana). La carne rossa, invece, andrebbe limitata a non più di 1 volta a settimana, e quella processata (salumi, insaccati) a non più di 1-2 volte.',
+    perche: 'La carne rossa e quella processata contengono grassi saturi e composti (come l\'eme e i nitriti) associati a un maggior rischio di malattie cardiovascolari e di alcuni tumori (colon-retto) secondo le evidenze dell\'IARC e dell\'OMS.',
+    cosa_fare: ['Prediligi pollo e tacchino senza pelle', 'Cuoci la carne al forno, alla griglia o al vapore', 'Limita i salumi a 1-2 volte a settimana e scegli quelli meno grassi (bresaola, prosciutto cotto)', 'Usa la carne rossa come "condimento" e non come base del piatto']
+  },
+  {
+    id: 13, categoria: 'Proteine', badge: 'badge-blu', emoji: '🥚',
+    titolo: 'Le uova: un alimento completo',
+    consiglio: 'Le uova hanno vissuto un periodo di ingiusta cattiva reputazione. Le Linee Guida CREA indicano 2-4 uova a settimana come porzione adeguata per un adulto sano, distribuite in più giorni. Sono un\'ottima fonte proteica economica e versatile.',
+    perche: 'Un uovo intero contiene 6-7 g di proteine complete (con tutti gli aminoacidi essenziali), vitamina D, B12, colina (essenziale per il cervello), luteina e zeaxantina (protettive per la vista). Il colesterolo alimentare dell\'uovo ha un impatto minimo sul colesterolo ematico nella maggior parte delle persone.',
+    cosa_fare: ['Prepara una frittata di verdure per una cena veloce ed equilibrata', 'Usa un uovo sodo come proteina nell\'insalata', 'La cottura alla coque o in camicia conserva meglio i nutrienti rispetto alla frittura', 'Abbina le uova sempre a verdure abbondanti', 'Ricorda: 2-4 uova/settimana sono indicate per l\'adulto sano (cap. 5 CREA 2018)']
+  },
+  {
+    id: 14, categoria: 'Proteine', badge: 'badge-blu', emoji: '🧀',
+    titolo: 'Latticini: la giusta quantità',
+    consiglio: 'Latte, yogurt, ricotta e formaggi sono fonti importanti di calcio, vitamina D e proteine. L\'obiettivo è 1-2 porzioni al giorno di latte o yogurt, con formaggi freschi 2-3 volte a settimana e stagionati con moderazione.',
+    perche: 'Il calcio nei latticini è altamente biodisponibile (meglio assorbito rispetto a quello vegetale). Il fabbisogno di calcio è di 1000-1200 mg/giorno negli adulti, difficile da raggiungere senza latticini o senza attenzione alle fonti vegetali alternative.',
+    cosa_fare: ['Preferisci yogurt bianco naturale (non zuccherato) per la colazione', 'Usa la ricotta al posto del mascarpone nelle ricette', 'Scegli formaggi freschi (mozzarella, ricotta) più spesso di quelli stagionati', 'Se sei intollerante, valuta bevande vegetali fortificate in calcio']
+  },
+  {
+    id: 15, categoria: 'Proteine', badge: 'badge-blu', emoji: '🫘',
+    titolo: 'Alterni la proteina? Hai vinto',
+    consiglio: 'Il segreto di un\'alimentazione equilibrata è alternare le fonti proteiche durante la settimana. Carne bianca, pesce, legumi, uova e latticini coprono esigenze nutritive diverse. Nessuna fonte è superiore: la varietà è la risposta.',
+    perche: 'Diversificare le proteine significa ottenere aminoacidi, grassi, vitamine e minerali in proporzioni diverse e complementari. I legumi apportano fibra assente nella carne; il pesce porta omega-3 che mancano nelle uova; i latticini portano calcio che i legumi danno poco.',
+    cosa_fare: ['Schema settimanale: 2 volte pesce, 2 volte legumi, 1 carne bianca, 1-2 uova, 1 formaggio', 'Non mangiare lo stesso tipo di proteina più di 2 giorni di fila', 'Prova la "dieta a settimane" dove ogni settimana dai più spazio a un diverso gruppo proteico', 'Ricorda: anche pasta e pane contribuiscono alle proteine totali della giornata']
+  },
+  // GRASSI E CONDIMENTI (3)
+  {
+    id: 16, categoria: 'Grassi e Condimenti', badge: 'badge-giallo', emoji: '🫒',
+    titolo: 'L\'olio EVO: oro verde italiano',
+    consiglio: 'L\'olio extravergine di oliva è il condimento principe della dieta mediterranea. Ricco di acido oleico (omega-9) e polifenoli, è da usare preferibilmente a crudo per preservarne i nutrienti. La quantità ideale è 2-3 cucchiai al giorno.',
+    perche: 'I polifenoli dell\'EVO (oleocanale, idrossitirosolo) hanno proprietà antinfiammatorie, antiossidanti e cardioprotettive documentate da decenni di ricerche. L\'acido oleico migliora il profilo lipidico aumentando l\'HDL ("colesterolo buono").',
+    cosa_fare: ['Usa l\'EVO a crudo su insalate, zuppe e verdure grigliate', 'Per cucinare a basse temperature è ottimo; evitalo per friggere ad alte temperature', 'Conservalo lontano dalla luce e dal calore (non sopra i fornelli)', 'Scegli un EVO con DOP o IGP per garantirne la qualità e l\'origine']
+  },
+  {
+    id: 17, categoria: 'Grassi e Condimenti', badge: 'badge-giallo', emoji: '🧈',
+    titolo: 'Limita i grassi saturi',
+    consiglio: 'Burro, strutto, panna, lardo e gli oli tropicali (cocco, palma) contengono grassi saturi che, in eccesso, aumentano il colesterolo LDL e il rischio cardiovascolare. Usali in piccole quantità e solo occasionalmente.',
+    perche: 'I grassi saturi aumentano la sintesi epatica di colesterolo LDL. Le Linee Guida CREA e l\'OMS raccomandano di mantenerli sotto il 10% dell\'apporto calorico totale. Sono diversi dai grassi trans (industriali), ancora più dannosi, da eliminare completamente.',
+    cosa_fare: ['Sostituisci il burro con EVO o avocado nei panini', 'Usa yogurt greco al posto della panna in cucina', 'Leggi le etichette dei prodotti confezionati: verifica "olio di palma" o "grassi idrogenati"', 'Riserva il burro alle preparazioni dolci occasionali, in piccole quantità']
+  },
+  {
+    id: 18, categoria: 'Grassi e Condimenti', badge: 'badge-giallo', emoji: '🌰',
+    titolo: 'I grassi buoni ci vogliono',
+    consiglio: 'Non tutti i grassi fanno male! Gli acidi grassi insaturi (omega-3 e omega-6) sono essenziali per il cervello, le membrane cellulari, la vista e la funzione ormonale. Il problema è la qualità dei grassi, non la loro presenza.',
+    perche: 'Il cervello è composto per il 60% di grassi, prevalentemente DHA (omega-3). Una dieta priva di grassi buoni compromette la funzione cognitiva, la sintesi di ormoni steroidei e l\'assorbimento delle vitamine liposolubili A, D, E, K.',
+    cosa_fare: ['Fonti di omega-3: pesce azzurro (sardine, sgombro, salmone), noci, semi di lino', 'Fonti di omega-9: olio EVO, avocado, mandorle, nocciole', 'Non eliminare il grasso dal pesce o dall\'avocado: è il grasso buono che ti serve', 'Bilancia omega-6 e omega-3 riducendo oli di semi di girasole in eccesso']
+  },
+  // SALE E ZUCCHERO (4)
+  {
+    id: 19, categoria: 'Sale e Zucchero', badge: 'badge-rosso', emoji: '🧂',
+    titolo: 'Riduci il sale gradualmente',
+    consiglio: 'L\'italiano medio consuma circa 10 g di sale al giorno, il doppio del massimo raccomandato (5 g). La riduzione va fatta gradualmente: il gusto si adatta in 6-8 settimane e alla fine il cibo salato ti sembrerà eccessivo.',
+    perche: 'Un eccesso di sodio aumenta la pressione arteriosa (ipertensione), che è il principale fattore di rischio per ictus e infarto. Ridurre il sale di soli 3 g al giorno può abbassare la pressione sistolica di 3-5 mmHg, riducendo del 10-15% il rischio cardiovascolare.',
+    cosa_fare: ['Non aggiungere sale a tavola: assaggia prima di salare', 'Usa erbe aromatiche: basilico, origano, rosmarino, timo, curcuma, pepe', 'Attenzione ai prodotti confezionati: pane, formaggi, affettati, salse sono fonti nascoste di sodio', 'Scegli il sale iodato: protegge la tiroide e se ne usa di meno grazie al sapore più intenso']
+  },
+  {
+    id: 20, categoria: 'Sale e Zucchero', badge: 'badge-rosso', emoji: '🍬',
+    titolo: 'Zuccheri nascosti: impara a riconoscerli',
+    consiglio: 'Lo zucchero si nasconde in decine di nomi diversi sulle etichette: saccarosio, fruttosio, sciroppo di glucosio, maltosio, destrosio, succo di frutta concentrato, sciroppo di mais. Imparare a riconoscerli è fondamentale.',
+    perche: 'L\'eccesso di zuccheri aggiunti è associato a obesità, diabete tipo 2, carie, steatosi epatica e malattie cardiovascolari. L\'OMS raccomanda di non superare il 10% delle calorie da zuccheri aggiunti (circa 50 g per 2000 kcal) e idealmente di mantenersi sotto il 5%.',
+    cosa_fare: ['Leggi la lista ingredienti: se uno zucchero è tra i primi 3, il prodotto è molto zuccherato', 'Sostituisci bibite zuccherate con acqua naturale, tisane non zuccherate o acqua con limone', 'Scegli yogurt bianco naturale e aggiungi tu la frutta fresca', 'Il miele e lo sciroppo d\'agave sono ancora zuccheri: usali con moderazione come lo zucchero bianco']
+  },
+  {
+    id: 21, categoria: 'Sale e Zucchero', badge: 'badge-rosso', emoji: '🥤',
+    titolo: 'Le bibite: calorie vuote da evitare',
+    consiglio: 'Una lattina di cola (330 ml) contiene circa 35 g di zucchero, pari a 7 cucchiaini. Le bibite gassate, succhi di frutta industriali e energy drink contribuiscono significativamente all\'eccesso di zuccheri senza apportare nutrienti utili.',
+    perche: 'Le calorie liquide saziano molto meno di quelle solide perché non attivano i meccanismi di sazietà. Si può consumare 500 kcal bevendo senza sentirsi sazi, mentre 500 kcal mangiando si apprezzano pienamente. Questo porta a un introito calorico complessivo maggiore.',
+    cosa_fare: ['Sostituisci le bibite zuccherate con acqua frizzante e limone', 'Se ami la cola, cerca le versioni senza zucchero (ma non abusarne per l\'acidità)', 'I centrifugati di frutta fatti in casa hanno meno zucchero dei succhi industriali, ma molto meno della frutta intera', 'Abitúati a portare sempre con te una borraccia d\'acqua']
+  },
+  {
+    id: 22, categoria: 'Sale e Zucchero', badge: 'badge-rosso', emoji: '🍰',
+    titolo: 'Dolci: piacere occasionale, non abitudine',
+    consiglio: 'Le Linee Guida non proibiscono i dolci, ma li collocano nella categoria dei cibi da consumare "occasionalmente". Gustare un dolce con consapevolezza è diverso dall\'assumere zuccheri nascosti ogni giorno attraverso prodotti confezionati.',
+    perche: 'Il consumo eccessivo di dolci è correlato all\'accumulo di grasso viscerale (il più pericoloso per la salute metabolica), all\'insulino-resistenza e agli sbalzi glicemici che generano fame improvvisa poco dopo il pasto.',
+    cosa_fare: ['Riserva i dolci ai momenti speciali (weekend, occasioni sociali)', 'Prepara dolci in casa dove controlli gli ingredienti e le quantità', 'Se hai voglia di qualcosa di dolce dopo i pasti, prova 2-3 quadretti di cioccolato fondente (≥70%)', 'Non usare il dolce come consolazione emotiva: cerca alternative (una passeggiata, un\'attività creativa)']
+  },
+  // IDRATAZIONE (3)
+  {
+    id: 23, categoria: 'Idratazione', badge: 'badge-menta', emoji: '💧',
+    titolo: 'L\'acqua è il tuo miglior alleato',
+    consiglio: 'Il corpo umano è composto per il 60% di acqua e non può funzionare senza un\'adeguata idratazione. L\'obiettivo minimo è 1,5-2 litri al giorno (6-8 bicchieri), da aumentare in estate o con l\'attività fisica.',
+    perche: 'Anche una lieve disidratazione (1-2% del peso corporeo) compromette la concentrazione, la resistenza fisica, la funzione renale e la regolazione della temperatura corporea. La sensazione di sete è già un segnale tardivo: non aspettarla per bere.',
+    cosa_fare: ['Bevi un bicchiere d\'acqua appena sveglio', 'Porta sempre con te una borraccia riutilizzabile', 'Imposta un promemoria sul telefono ogni 2 ore', 'Ricorda che anche frutta e verdura contribuiscono all\'idratazione (anguria, cetrioli, pomodori)']
+  },
+  {
+    id: 24, categoria: 'Idratazione', badge: 'badge-menta', emoji: '🍵',
+    titolo: 'Tè, tisane e caffè: alleati moderati',
+    consiglio: 'Tè verde, tè nero e tisane senza zucchero contribuiscono all\'idratazione e apportano antiossidanti. Il caffè, consumato con moderazione (2-3 tazze al giorno), non solo non è nocivo, ma ha effetti protettivi documentati.',
+    perche: 'Il tè verde è ricco di catechine (potenti antiossidanti) con effetti protettivi su cuore e metabolismo. Il caffè contiene polifenoli e la caffeina ha effetti positivi sulla funzione cognitiva e sul rischio di diabete tipo 2, secondo numerosi studi prospettici.',
+    cosa_fare: ['Bevi tè e tisane senza zucchero o con poche gocce di miele', 'Il caffè è ok fino a 3 tazze al giorno per la maggior parte degli adulti sani', 'Evita le versioni zuccherate e con latte intero in eccesso', 'Le tisane alla sera (camomilla, melissa, tiglio) aiutano la qualità del sonno']
+  },
+  {
+    id: 25, categoria: 'Idratazione', badge: 'badge-menta', emoji: '🌊',
+    titolo: 'Idratazione e attività fisica',
+    consiglio: 'Durante l\'attività fisica il fabbisogno idrico aumenta significativamente. Prima, durante e dopo l\'esercizio è fondamentale bere acqua. Per attività intense superiori all\'ora, le bevande con elettroliti possono essere utili.',
+    perche: 'Durante l\'esercizio si perdono attraverso il sudore non solo acqua ma anche sodio, potassio e magnesio. La disidratazione riduce la performance sportiva già dall\'1% di perdita del peso corporeo e diventa pericolosa oltre il 3-4%.',
+    cosa_fare: ['Prima dell\'esercizio: bevi 400-500 ml di acqua nelle 2 ore precedenti', 'Durante: 150-250 ml ogni 15-20 minuti di attività moderata', 'Dopo: reintegra con 1,5 volte la perdita stimata (urine chiare = buona idratazione)', 'Per sport < 60 min: acqua naturale è sufficiente; per > 60 min valuta bevande con sodio']
+  },
+  // ATTIVITÀ FISICA (3)
+  {
+    id: 26, categoria: 'Attività Fisica', badge: 'badge-viola', emoji: '🚶',
+    titolo: '30 minuti al giorno: facile come camminare',
+    consiglio: 'Le Linee Guida CREA e l\'OMS raccomandano almeno 150 minuti di attività fisica moderata a settimana, equivalenti a 30 minuti al giorno per 5 giorni. Camminare a passo sostenuto è sufficiente per ottenere benefici significativi.',
+    perche: 'L\'attività fisica regolare riduce il rischio di malattie cardiovascolari, diabete tipo 2, osteoporosi, alcuni tumori e depressione. Migliora la sensibilità insulinica, la pressione sanguigna, il metabolismo dei grassi e la qualità del sonno.',
+    cosa_fare: ['Cammina durante la pausa pranzo o dopo cena', 'Usa le scale invece dell\'ascensore ogni volta che puoi', 'Scendi una fermata prima e percorri il resto a piedi', 'Anche il giardinaggio, le faccende domestiche intensive e ballare contano come attività fisica']
+  },
+  {
+    id: 27, categoria: 'Attività Fisica', badge: 'badge-viola', emoji: '🏃',
+    titolo: 'Movimento e alimentazione: un binomio',
+    consiglio: 'Alimentazione e attività fisica non sono variabili indipendenti: si potenziamo a vicenda. Una dieta equilibrata fornisce il carburante per muoversi meglio e l\'attività fisica migliora il metabolismo dei nutrienti. Non si può compensare il movimento con la dieta e viceversa.',
+    perche: 'Il muscolo è il principale "consumatore" di glucosio e un alleato fondamentale contro il diabete. L\'attività fisica aumenta il NEAT (termogenesi da attività non sportiva), che nei sedentari può differire di 700-1000 kcal/giorno rispetto alle persone attive.',
+    cosa_fare: ['Non saltare i pasti prima di fare sport leggero: il corpo ha bisogno di carburante', 'Dopo l\'allenamento intenso, consuma una fonte proteica + carboidrati (yogurt con frutta, pane integrale con affettato magro)', 'Stai seduto più di 8 ore al giorno? Fai almeno 5 minuti di movimento ogni ora', 'Includi almeno 2 sessioni settimanali di esercizi di forza per preservare la massa muscolare']
+  },
+  {
+    id: 28, categoria: 'Attività Fisica', badge: 'badge-viola', emoji: '🧘',
+    titolo: 'Riduci la sedentarietà',
+    consiglio: 'Passare molte ore seduto è un fattore di rischio indipendente dalla quantità di sport che si pratica. Anche chi fa attività fisica regolare trae beneficio da interruzioni frequenti della sedentarietà durante la giornata lavorativa.',
+    perche: 'Stare seduti a lungo riduce l\'attività della lipoproteina-lipasi (enzima chiave nel metabolismo dei grassi) e aumenta i livelli di glucosio post-prandiale. Interruzioni brevi e frequenti (anche solo alzarsi e camminare per 2-3 minuti) normalizzano questi parametri.',
+    cosa_fare: ['Usa un timer per alzarti ogni 45-60 minuti', 'Fai le telefonate camminando', 'Tieni una bottiglia d\'acqua lontana dalla scrivania per essere costretto ad alzarti', 'Considera una scrivania regolabile in altezza (sit-stand desk) se lavori al computer']
+  },
+  // SICUREZZA ALIMENTARE (2)
+  {
+    id: 29, categoria: 'Sicurezza Alimentare', badge: 'badge-grigio', emoji: '🧊',
+    titolo: 'La catena del freddo non si spezza',
+    consiglio: 'Rispettare la catena del freddo significa mantenere gli alimenti deperibili a temperature sicure dalla produzione al consumo. La proliferazione batterica avviene principalmente tra 4°C e 60°C (la "zona di pericolo").',
+    perche: 'La maggior parte delle malattie trasmesse dagli alimenti (Salmonella, Listeria, Campylobacter, E. coli) è causata da una cattiva gestione delle temperature. Il frigorifero di casa deve essere sotto i 4°C; molti lo tengono a 7-8°C, rendendo inefficace la conservazione.',
+    cosa_fare: ['Controlla la temperatura del tuo frigorifero con un termometro (≤4°C)', 'Non lasciare cibi cotti a temperatura ambiente più di 2 ore (1 ora in estate)', 'Scongelate gli alimenti in frigorifero, non a temperatura ambiente', 'Separa sempre carne e pesce crudi dagli altri alimenti in frigorifero']
+  },
+  {
+    id: 30, categoria: 'Sicurezza Alimentare', badge: 'badge-grigio', emoji: '🫧',
+    titolo: 'Lava frutta e verdura sempre',
+    consiglio: 'Frutta e verdura crude possono essere contaminate da pesticidi, microrganismi patogeni (E. coli, Salmonella) e sporcizia. Lavarle accuratamente con acqua corrente è il modo più semplice per ridurre il rischio.',
+    perche: 'I pesticidi si accumulano prevalentemente nella buccia. Per la frutta che si consuma con la buccia (mele, pere, uva, fragole) è importante lavare con cura. Il biologico riduce ma non elimina il rischio di contaminazione batterica, comunque presente per la presenza di terreno e acqua di irrigazione.',
+    cosa_fare: ['Lava frutta e verdura sotto acqua corrente fredda per almeno 30 secondi', 'Per le foglie (insalata, spinaci) usa una bacinella con acqua e risciacqua più volte', 'Non usare sapone o detergenti: l\'acqua corrente è sufficiente e più sicura', 'Dopo aver lavato, conserva frutta e verdura coperte in frigorifero se non le consumi subito']
+  },
+  // SOSTENIBILITÀ (2) — cap. 13 CREA 2018
+  {
+    id: 31, categoria: 'Sostenibilità', badge: 'badge-verde', emoji: '🌍',
+    titolo: 'Mangia verde per il pianeta',
+    consiglio: 'Le scelte alimentari hanno un impatto diretto sull\'ambiente. Una dieta ricca di alimenti vegetali e povera di carne — soprattutto rossa e bovina — riduce le emissioni di gas serra, il consumo di acqua e di suolo. Non serve diventare vegani: basta seguire le raccomandazioni CREA.',
+    perche: 'La produzione di carne è responsabile di circa il 18% delle emissioni globali di CO₂ da attività umane, più dell\'intero settore dei trasporti (13%). Le carni bovine hanno un impatto ambientale molto più elevato rispetto a pollame e pesce. Ridurre la carne rossa a non più di 1 volta a settimana — come già raccomandato per la salute — protegge contemporaneamente la salute e l\'ambiente.',
+    cosa_fare: ['Sostituisci la carne rossa con legumi, pesce o pollame almeno 3-4 volte a settimana', 'Scegli prodotti di stagione: costano meno e hanno minor impatto ambientale', 'Preferisci l\'acqua del rubinetto a quella in bottiglia: riduce le bottiglie di plastica', 'Compra latte e yogurt secondo le raccomandazioni: nutrienti importanti con impatto minore rispetto alla carne']
+  },
+  {
+    id: 32, categoria: 'Sostenibilità', badge: 'badge-verde', emoji: '♻️',
+    titolo: 'Zero spreco alimentare',
+    consiglio: 'Lo spreco alimentare è un problema etico, economico e ambientale. Il 47% dello spreco italiano avviene nelle case dei consumatori. Piccoli cambiamenti nelle abitudini quotidiane possono fare una grande differenza per l\'ambiente e per il portafoglio.',
+    perche: 'Per produrre cibo che non verrà consumato vengono inutilmente usate risorse naturali (acqua, suolo, energia) e generate emissioni nell\'atmosfera. Secondo i dati europei, la fase del consumo casalingo rappresenta il 43% dello spreco alimentare totale nella filiera — la quota su cui il singolo consumatore ha più controllo diretto.',
+    cosa_fare: ['Programma la spesa settimanale con una lista: compra solo quello che riesci a consumare', 'Riponi in frigorifero gli alimenti più vecchi davanti a quelli più nuovi (metodo FIFO)', 'Ricicla gli avanzi in nuove ricette il giorno successivo (purché conservati correttamente)', 'Congela pane, carne e verdure prima che vadano a male; gli scongelati ben cotti possono anche essere ricongelati']
+  },
+  // DIETE E INTEGRATORI (1) — cap. 11 CREA 2018
+  {
+    id: 33, categoria: 'Diete e Integratori', badge: 'badge-rosso', emoji: '💊',
+    titolo: 'Diffida delle diete miracolose',
+    consiglio: 'Non esiste "la dieta di…" o il "superfood" che risolve tutto. Le diete monocibo, iperproteiche (tipo Atkins, Dukan), i digiuni prolungati e i sostituti del pasto, se seguiti senza supervisione medica, possono essere dannosi. L\'unica dieta che funziona nel lungo termine è quella equilibrata e personalizzata.',
+    perche: 'Le diete squilibrate (es. low-carb estreme) possono produrre un calo di peso iniziale rapido, ma agendo principalmente sull\'acqua corporea e sulla massa magra — non sul tessuto adiposo. Il tasso di recupero del peso perso è molto alto. Il vero obiettivo è cambiare le abitudini alimentari in modo durevole, non perdere chili in fretta.',
+    cosa_fare: ['Affidati sempre a un medico o a un professionista della nutrizione per perdere peso', 'Non eliminare interi gruppi alimentari (pane e pasta non fanno ingrassare se consumati nelle giuste quantità)', 'Non saltare mai la prima colazione: è il pasto più importante della giornata', 'Non acquistare integratori di tua iniziativa: possono completare una dieta carente, ma non sostituire un\'alimentazione sana']
+  }
+];
+
+// ──────────────────────────────────────────────────────────────
+// DATI: PASTI PER IL PIANO SETTIMANALE
+// ──────────────────────────────────────────────────────────────
+const COLAZIONI = [
+  'Yogurt bianco naturale + frutta fresca di stagione + 2 fette biscottate integrali',
+  'Latte parzialmente scremato + fiocchi d\'avena + 1 frutto fresco',
+  'Caffè o tè non zuccherato + 2 fette di pane integrale con marmellata senza zuccheri aggiunti',
+  'Yogurt greco + frutti di bosco + 1 cucchiaio di semi di chia',
+  'Tè verde + pane di segale con ricotta e miele + 1 frutto',
+  'Latte vegetale (soia/avena) + müsli non zuccherato + frutta secca (noci)',
+  'Caffè + 1 fetta di pane integrale con avocado schiacciato e pomodorino',
+  'Yogurt naturale + banana + 2 gallette di riso integrali',
+  'Tè + fette biscottate integrali con formaggio fresco spalmabile + pomodori',
+  'Cappuccino con latte parzialmente scremato + 1 frutto fresco di stagione'
+];
+
+const SPUNTINI = [
+  '1 frutto fresco di stagione',
+  '1 vasetto di yogurt naturale (125 g)',
+  'Carote e finocchi crudi',
+  'Manciata di frutta secca non salata (noci o mandorle, 30 g max)',
+  '1 fetta di pane integrale con ricotta (30 g)',
+  '1 frutto e 2 noci',
+  'Cetrioli e pomodorini con qualche goccia di limone',
+  '1 galletta di riso con hummus di ceci (1 cucchiaio)',
+  '1 mela o pera con 1 cucchiaino di burro di mandorle',
+  'Frutti di bosco freschi (fragole, mirtilli) con 1 cucchiaio di yogurt',
+  '1 cubetto di formaggio fresco (mozzarella mini) + pomodorino',
+  '2 prugne o datteri freschi'
+];
+
+const PRANZI = [
+  { desc: 'Pasta integrale al pomodoro fresco e basilico + insalata mista + 1 frutto', tipo: 'cereali', stagione: ['estate','primavera'] },
+  { desc: 'Riso con verdure di stagione saltate + petto di pollo al vapore + yogurt', tipo: 'carne_bianca', stagione: ['primavera','estate'] },
+  { desc: 'Minestra di legumi con pasta integrale + pane integrale + frutta', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Insalata di farro con tonno al naturale, pomodorini e cetrioli', tipo: 'pesce', stagione: ['estate','primavera'] },
+  { desc: 'Pasta e fagioli + insalata verde + 1 frutto di stagione', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Risotto con zucca e rosmarino + insalata di rucola + 1 frutto', tipo: 'cereali', stagione: ['autunno'] },
+  { desc: 'Insalata di ceci con pomodori, basilico e pane integrale', tipo: 'legumi', stagione: ['estate','primavera'] },
+  { desc: 'Pasta integrale con broccoli, aglio e olio EVO + 1 arancia', tipo: 'cereali', stagione: ['autunno','inverno'] },
+  { desc: 'Zuppa di lenticchie rosse con curcuma + pane di segale + 1 frutto', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Orzo con tonno, olive e capperi + insalata mista', tipo: 'pesce', stagione: ['estate','autunno'] },
+  { desc: 'Pasta integrale con sardine, finocchietto e pinoli (pasta con le sarde) + insalata', tipo: 'pesce', stagione: ['inverno','autunno'] },
+  { desc: 'Riso integrale con piselli e prosciutto cotto (1 fetta) + frutta', tipo: 'carne_bianca', stagione: ['primavera'] },
+  { desc: 'Panzanella toscana con pane raffermo, pomodori, cetrioli, cipolla e olive + 1 frutto', tipo: 'cereali', stagione: ['estate'] },
+  { desc: 'Insalata di borlotti con tonno, sedano e carote + pane integrale', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Pasta integrale al ragù di lenticchie + insalata verde + 1 frutto', tipo: 'legumi', stagione: ['autunno','inverno','primavera'] },
+  { desc: 'Tagliatelle integrali con pesto di noci e spinaci + 1 frutto', tipo: 'cereali', stagione: ['primavera','estate'] }
+];
+
+const CENE = [
+  { desc: 'Filetto di merluzzo al forno con verdure grigliate (zucchine, peperoni) + pane integrale', tipo: 'pesce', stagione: ['estate','primavera'] },
+  { desc: 'Frittata di verdure miste + insalata verde + pane integrale', tipo: 'uova', stagione: ['tutte'] },
+  { desc: 'Zuppa di lenticchie verdi con carote e sedano + pane di segale + 1 frutto', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Petto di tacchino al vapore con erbe aromatiche + purè di zucca + pane', tipo: 'carne_bianca', stagione: ['autunno','inverno'] },
+  { desc: 'Insalata di ceci con verdure crude (carote, sedano, pomodori) + pane integrale', tipo: 'legumi', stagione: ['estate','primavera'] },
+  { desc: 'Salmone al cartoccio con limone e rosmarino + spinaci al vapore + pane integrale', tipo: 'pesce', stagione: ['tutte'] },
+  { desc: 'Pollo al forno con patate e rosmarino + insalata mista', tipo: 'carne_bianca', stagione: ['autunno','inverno'] },
+  { desc: 'Orata al forno con pomodorini e olive + verdure grigliate + pane', tipo: 'pesce', stagione: ['estate','primavera'] },
+  { desc: 'Fagioli borlotti in umido con salvia + pane di segale + 1 frutto', tipo: 'legumi', stagione: ['autunno','inverno'] },
+  { desc: 'Sgombro in padella con pomodorini e capperi + insalata di finocchi', tipo: 'pesce', stagione: ['tutte'] },
+  { desc: 'Polpette di carne bianca al pomodoro (fatte in casa) + broccoli al vapore + pane', tipo: 'carne_bianca', stagione: ['autunno','inverno'] },
+  { desc: 'Frittata di asparagi e parmigiano + insalata verde + pane integrale', tipo: 'uova', stagione: ['primavera'] },
+  { desc: 'Trota salmonata al forno con finocchi e olive + pane integrale', tipo: 'pesce', stagione: ['tutte'] },
+  { desc: 'Hamburger di tacchino homemade con insalata, pomodoro e pane integrale + cetrioli', tipo: 'carne_bianca', stagione: ['estate'] },
+  { desc: 'Bistecca di manzo alla griglia (1 sola volta/settimana) + verdure miste al vapore + pane', tipo: 'carne_rossa', stagione: ['tutte'] },
+  { desc: 'Minestrone di verdure con crostini di pane integrale + 1 frutto', tipo: 'verdure', stagione: ['autunno','inverno'] },
+  { desc: 'Caprese di mozzarella, pomodori e basilico + pane integrale + 1 frutto', tipo: 'latticini', stagione: ['estate'] }
+];
+
+// ──────────────────────────────────────────────────────────────
+// DATI: ADATTAMENTI PER PROFILO
+// ──────────────────────────────────────────────────────────────
+const PROFILI = {
+  adulto: {
+    label: 'Adulto',
+    nota: null,
+    calorie: '2000 kcal/giorno (indicativo)',
+    focus: 'Equilibrio e varietà',
+    filtro: p => true
+  },
+  anziano: {
+    label: 'Anziano / Over 65',
+    nota: '⚕️ Negli anziani aumenta il fabbisogno di proteine (per prevenire la sarcopenia), calcio e vitamina D. Importante mantenere l\'idratazione anche senza sentire sete.',
+    calorie: '1800 kcal/giorno (indicativo)',
+    focus: 'Proteine, calcio, vitamina D e idratazione',
+    filtro: p => true
+  },
+  sportivo: {
+    label: 'Sportivo',
+    nota: '🏃 Lo sportivo necessita di maggiore apporto di carboidrati complessi, proteine per il recupero muscolare e idratazione. Aumenta le porzioni di cereali integrali e proteine magre.',
+    calorie: '2500–3000 kcal/giorno (indicativo)',
+    focus: 'Carboidrati complessi, proteine e recupero',
+    filtro: p => true
+  },
+  gravidanza: {
+    label: 'In gravidanza',
+    nota: '⚠️ Il piano mostrato è indicativo. Consulta sempre il tuo medico o un professionista della nutrizione per adattamenti specifici durante la gravidanza. Secondo le Linee Guida CREA 2018 (cap. 10): aumentano i fabbisogni di folati (supplementa acido folico 400 mcg/die da prima del concepimento), ferro, calcio, iodio e omega-3 (dal pesce). Zero alcol assoluto. Evitare: carni crude o poco cotte, pesce crudo o affumicato, uova crude, latte crudo e formaggi a pasta molle non pastorizzata. Non superare 2 caffè al giorno.',
+    calorie: '+300 kcal/giorno; acqua ≥ 2350 ml/giorno',
+    focus: 'Folati, ferro, calcio, iodio, omega-3 e sicurezza alimentare',
+    filtro: p => true
+  }
+};
+
+// ──────────────────────────────────────────────────────────────
+// UTILITY
+// ──────────────────────────────────────────────────────────────
+function getStagioneCorrente() {
+  const mese = new Date().getMonth() + 1;
+  if (mese >= 3 && mese <= 5) return 'primavera';
+  if (mese >= 6 && mese <= 8) return 'estate';
+  if (mese >= 9 && mese <= 11) return 'autunno';
+  return 'inverno';
+}
+
+function dataOggiString() {
+  const oggi = new Date();
+  const giorni = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  const mesi = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+  return `${giorni[oggi.getDay()]} ${oggi.getDate()} ${mesi[oggi.getMonth()]} ${oggi.getFullYear()}`;
+}
+
+function seedRandom(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    return (s >>> 0) / 0xffffffff;
+  };
+}
+
+function seedFromDate() {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+
+function shuffle(arr, rng) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ──────────────────────────────────────────────────────────────
+// LOGICA: CONSIGLIO DEL GIORNO
+// ──────────────────────────────────────────────────────────────
+let consiglioIdx = -1;
+let consiglioOffset = 0;
+
+function renderConsiglio() {
+  const seed = seedFromDate() + consiglioOffset;
+  const rng = seedRandom(seed);
+  const idx = Math.floor(rng() * CONSIGLI.length);
+  const c = CONSIGLI[idx];
+
+  document.getElementById('consiglio-emoji').textContent = c.emoji;
+  document.getElementById('consiglio-titolo').textContent = c.titolo;
+  document.getElementById('consiglio-testo').textContent = c.consiglio;
+  document.getElementById('consiglio-perche').textContent = c.perche;
+
+  const ul = document.getElementById('consiglio-cosa-fare');
+  ul.innerHTML = '';
+  c.cosa_fare.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+
+  const badgeWrap = document.getElementById('consiglio-badge-wrap');
+  badgeWrap.innerHTML = `<span class="badge ${c.badge}">${c.categoria}</span>`;
+}
+
+document.getElementById('btn-altro-consiglio').addEventListener('click', () => {
+  consiglioOffset++;
+  renderConsiglio();
+});
+
+// ──────────────────────────────────────────────────────────────
+// LOGICA: PIANO SETTIMANALE
+// ──────────────────────────────────────────────────────────────
+const GIORNI_NOMI = ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'];
+const GIORNI_EMOJI = ['🌅','🌤️','⛅','🌈','🌟','🎉','😴'];
+
+let profiloSelezionato = localStorage.getItem('profilo') || 'adulto';
+let pianoCorrente = null;
+
+function aggiornaBtnProfilo() {
+  document.querySelectorAll('.profilo-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.profilo === profiloSelezionato);
+  });
+  const nota = document.getElementById('nota-gravidanza');
+  nota.classList.toggle('visible', profiloSelezionato === 'gravidanza');
+}
+
+document.getElementById('profilo-grid').addEventListener('click', e => {
+  const btn = e.target.closest('.profilo-btn');
+  if (!btn) return;
+  profiloSelezionato = btn.dataset.profilo;
+  localStorage.setItem('profilo', profiloSelezionato);
+  aggiornaBtnProfilo();
+});
+
+function generaPiano(forza = false) {
+  const stagione = getStagioneCorrente();
+
+  // Filtro per stagione
+  function filtraStagione(pool) {
+    const conStagione = pool.filter(p => p.stagione.includes(stagione) || p.stagione.includes('tutte'));
+    return conStagione.length >= 7 ? conStagione : pool;
+  }
+
+  const rng = seedRandom(Date.now() & 0xfffffff);
+
+  // Pool filtrati
+  const pranziDisp = shuffle(filtraStagione(PRANZI), rng);
+  const ceneDisp   = shuffle(filtraStagione(CENE),   rng);
+  const colazioniDisp = shuffle([...COLAZIONI], rng);
+  const spuntiniDisp  = shuffle([...SPUNTINI], rng);
+
+  // Costruisci 7 giorni rispettando i vincoli
+  const piano = [];
+  let pesceCount = 0, legumiCount = 0, carneRossaCount = 0, carneBiancaCount = 0, uovaCount = 0;
+
+  const pranziUsati = new Set();
+  const ceneUsate   = new Set();
+
+  // Distribuisci i tipi rispettando le regole settimanali
+  // Cena: 2 pesce, 1 carne rossa (max), 2-3 carne bianca, 1-2 uova (tot. sett. 2-4 per CREA), resto legumi/verdure
+  // Pranzo: 2-3 legumi, 2 pesce, resto cereali/altri
+
+  const tipoCene = ['pesce','pesce','carne_bianca','carne_bianca','uova','legumi','carne_rossa'];
+  const tipoColazione = shuffle([...Array(7)].map((_,i) => i), rng);
+
+  for (let g = 0; g < 7; g++) {
+    // Colazione
+    const colazione = colazioniDisp[g % colazioniDisp.length];
+
+    // Spuntino mattina e pomeriggio
+    const spMattina    = spuntiniDisp[g % spuntiniDisp.length];
+    const spPomeriggio = spuntiniDisp[(g + 4) % spuntiniDisp.length];
+
+    // Pranzo: cerca un pasto del tipo appropriato non ancora usato
+    let pranzo = null;
+    const tipoP = g < 3 ? 'legumi' : (g < 5 ? 'pesce' : 'cereali');
+    const candidatiPranzo = pranziDisp.filter(p => !pranziUsati.has(p.desc));
+    const prefP = candidatiPranzo.filter(p => p.tipo === tipoP);
+    pranzo = prefP.length > 0 ? prefP[0] : (candidatiPranzo[0] || pranziDisp[0]);
+    pranziUsati.add(pranzo.desc);
+
+    // Cena: dal tipo predefinito per il giorno
+    const tipoCena = tipoCene[g];
+    const candidatiCena = ceneDisp.filter(p => !ceneUsate.has(p.desc));
+    const prefC = candidatiCena.filter(p => p.tipo === tipoCena);
+    let cena = prefC.length > 0 ? prefC[0] : (candidatiCena[0] || ceneDisp[0]);
+    ceneUsate.add(cena.desc);
+
+    piano.push({ colazione, spMattina, pranzo: pranzo.desc, spPomeriggio, cena: cena.desc, tipoCena });
+  }
+
+  return piano;
+}
+
+function contaObiettivi(piano) {
+  // Verdura e frutta: ogni pasto principale conta come 2 porzioni (pranzo+cena), + frutta colazione e spuntini
+  // Stima: 4-5 porzioni/giorno = 28-35/settimana
+  let verduraFrutta = 7 * 5; // stima base dai pasti
+
+  let pesce = 0, legumi = 0;
+  const tipoCene = ['pesce','pesce','carne_bianca','carne_bianca','uova','legumi','carne_rossa'];
+  piano.forEach((g, i) => {
+    if (g.cena.toLowerCase().includes('salmone') || g.cena.toLowerCase().includes('merluzzo') ||
+        g.cena.toLowerCase().includes('orata') || g.cena.toLowerCase().includes('sgombro') ||
+        g.cena.toLowerCase().includes('trota') || g.cena.toLowerCase().includes('sardine') ||
+        g.cena.toLowerCase().includes('pesce')) pesce++;
+    if (g.pranzo.toLowerCase().includes('lenticchie') || g.pranzo.toLowerCase().includes('ceci') ||
+        g.pranzo.toLowerCase().includes('fagioli') || g.pranzo.toLowerCase().includes('borlotti') ||
+        g.pranzo.toLowerCase().includes('piselli') || g.pranzo.toLowerCase().includes('legumi')) legumi++;
+    if (g.cena.toLowerCase().includes('lenticchie') || g.cena.toLowerCase().includes('ceci') ||
+        g.cena.toLowerCase().includes('fagioli') || g.cena.toLowerCase().includes('borlotti') ||
+        g.cena.toLowerCase().includes('legumi')) legumi++;
+  });
+
+  return { verduraFrutta, pesce, legumi };
+}
+
+function renderPiano(piano) {
+  const container = document.getElementById('giorni-list');
+  container.innerHTML = '';
+
+  piano.forEach((giorno, idx) => {
+    const card = document.createElement('div');
+    card.className = 'giorno-card' + (idx === 0 ? ' open' : '');
+    card.innerHTML = `
+      <div class="giorno-header" role="button" tabindex="0" aria-expanded="${idx === 0}">
+        <span style="font-size:18px;">${GIORNI_EMOJI[idx]}</span>
+        <span class="giorno-nome">${GIORNI_NOMI[idx]}</span>
+        <span class="giorno-chevron">▼</span>
+      </div>
+      <div class="giorno-body">
+        <div class="pasto-row"><span class="pasto-label">☀️ Colazione</span><span class="pasto-desc">${giorno.colazione}</span></div>
+        <div class="pasto-row"><span class="pasto-label">🍎 Spuntino</span><span class="pasto-desc">${giorno.spMattina}</span></div>
+        <div class="pasto-row"><span class="pasto-label">🍽️ Pranzo</span><span class="pasto-desc">${giorno.pranzo}</span></div>
+        <div class="pasto-row"><span class="pasto-label">🍊 Merenda</span><span class="pasto-desc">${giorno.spPomeriggio}</span></div>
+        <div class="pasto-row"><span class="pasto-label">🌙 Cena</span><span class="pasto-desc">${giorno.cena}</span></div>
+      </div>
+    `;
+
+    const header = card.querySelector('.giorno-header');
+    header.addEventListener('click', () => {
+      const isOpen = card.classList.toggle('open');
+      header.setAttribute('aria-expanded', isOpen);
+    });
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') header.click(); });
+
+    container.appendChild(card);
+  });
+
+  // Riepilogo obiettivi
+  const ob = contaObiettivi(piano);
+
+  function statoClasse(val, min, max) {
+    if (val >= min) return 'verde';
+    if (val >= min * 0.6) return 'arancio';
+    return 'rosso';
+  }
+  function statoIcon(val, min) {
+    if (val >= min) return '✅';
+    if (val >= min * 0.6) return '⚠️';
+    return '❌';
+  }
+
+  const obVerdura = document.getElementById('ob-verdura');
+  const obPesce   = document.getElementById('ob-pesce');
+  const obLegumi  = document.getElementById('ob-legumi');
+
+  obVerdura.className = 'obiettivo-item ' + statoClasse(ob.verduraFrutta, 35, 50);
+  obPesce.className   = 'obiettivo-item ' + statoClasse(ob.pesce, 2, 3);
+  obLegumi.className  = 'obiettivo-item ' + statoClasse(ob.legumi, 4, 6);
+
+  document.getElementById('ob-verdura-num').textContent = ob.verduraFrutta;
+  document.getElementById('ob-pesce-num').textContent   = ob.pesce;
+  document.getElementById('ob-legumi-num').textContent  = ob.legumi;
+
+  document.getElementById('ob-verdura-icon').textContent = statoIcon(ob.verduraFrutta, 35);
+  document.getElementById('ob-pesce-icon').textContent   = statoIcon(ob.pesce, 2);
+  document.getElementById('ob-legumi-icon').textContent  = statoIcon(ob.legumi, 4);
+
+  document.getElementById('riepilogo-card').style.display = 'block';
+}
+
+function salvaPiano(piano) {
+  localStorage.setItem('piano', JSON.stringify(piano));
+  localStorage.setItem('piano_data', new Date().toISOString().split('T')[0]);
+}
+
+function caricaPiano() {
+  const pianoCachato = localStorage.getItem('piano');
+  const dataCachata  = localStorage.getItem('piano_data');
+  if (!pianoCachato || !dataCachata) return null;
+  const giorni = Math.floor((Date.now() - new Date(dataCachata).getTime()) / 86400000);
+  if (giorni >= 7) return null;
+  return JSON.parse(pianoCachato);
+}
+
+document.getElementById('btn-genera').addEventListener('click', () => {
+  pianoCorrente = generaPiano(true);
+  salvaPiano(pianoCorrente);
+  renderPiano(pianoCorrente);
+});
+
+document.getElementById('btn-esporta').addEventListener('click', () => {
+  if (!pianoCorrente) {
+    alert('Genera prima il piano settimanale!');
+    return;
+  }
+  let testo = '🥗 MANGIO BENE – Piano Alimentare Settimanale\n';
+  testo += `Basato sulle Linee Guida per una Sana Alimentazione CREA 2018\n`;
+  testo += `Profilo: ${PROFILI[profiloSelezionato].label}\n`;
+  testo += `Generato il: ${new Date().toLocaleDateString('it-IT')}\n`;
+  testo += '═'.repeat(50) + '\n\n';
+
+  pianoCorrente.forEach((giorno, idx) => {
+    testo += `${GIORNI_NOMI[idx].toUpperCase()}\n`;
+    testo += `  ☀️  Colazione:  ${giorno.colazione}\n`;
+    testo += `  🍎  Spuntino:   ${giorno.spMattina}\n`;
+    testo += `  🍽️  Pranzo:     ${giorno.pranzo}\n`;
+    testo += `  🍊  Merenda:    ${giorno.spPomeriggio}\n`;
+    testo += `  🌙  Cena:       ${giorno.cena}\n`;
+    testo += '\n';
+  });
+
+  testo += '─'.repeat(50) + '\n';
+  testo += '⚕️  Questa app è a scopo informativo e non sostituisce\n';
+  testo += '    il parere di un medico o nutrizionista.\n';
+  testo += 'Fonte: CREA – Centro di Ricerca Alimenti e Nutrizione (2018)\n';
+
+  const blob = new Blob([testo], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'piano-alimentare-mangio-bene.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+// ──────────────────────────────────────────────────────────────
+// LOGICA: LE 10 REGOLE
+// ──────────────────────────────────────────────────────────────
+function renderLineeGuida() {
+  const container = document.getElementById('linee-guida-list');
+  LINEE_GUIDA.forEach(lg => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div style="display:flex;align-items:flex-start;gap:14px;">
+        <div style="font-size:32px;line-height:1;flex-shrink:0;">${lg.emoji}</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:700;color:var(--verde-salvia);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">Regola ${lg.num}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--grigio-testo);margin-bottom:5px;">${lg.titolo}</div>
+          <div style="font-size:13px;font-weight:600;color:var(--arancio-caldo);margin-bottom:8px;">${lg.regola}</div>
+          <div style="font-size:14px;color:#555;line-height:1.65;">${lg.desc}</div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ──────────────────────────────────────────────────────────────
+// TAB NAVIGATION
+// ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ──────────────────────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────────────────────
+document.getElementById('data-oggi').textContent = dataOggiString();
+aggiornaBtnProfilo();
+renderConsiglio();
+renderLineeGuida();
+
+// Carica piano dalla cache se disponibile
+const pianoCachato = caricaPiano();
+if (pianoCachato) {
+  pianoCorrente = pianoCachato;
+  renderPiano(pianoCorrente);
+}
+</script>
+
+<!--
+  Mangio Bene - Webapp basata sulle Linee Guida per una Sana Alimentazione CREA 2018
+  Fonte: Centro di Ricerca Alimenti e Nutrizione, Consiglio per la ricerca in agricoltura e l'analisi dell'economia agraria
+  Revisione 2018 (aggiornamento novembre 2019)
+  Questa app è a scopo informativo e non sostituisce il parere di un medico o nutrizionista.
+-->
+</body>
+</html>
