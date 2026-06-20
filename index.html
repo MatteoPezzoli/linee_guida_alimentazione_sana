@@ -100,6 +100,11 @@
       border-bottom-color: var(--arancio-caldo);
     }
     .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.9); }
+    .tab-short { display: none; }
+    @media (max-width: 480px) {
+      .tab-full { display: none; }
+      .tab-short { display: inline; }
+    }
 
     /* ─── MAIN CONTENT ───────────────────────────────── */
     main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
@@ -548,9 +553,18 @@
       </div>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab-btn active" role="tab" data-tab="consiglio">🗓️ Consiglio del Giorno</button>
-      <button class="tab-btn" role="tab" data-tab="settimana">📋 Pianifica la Settimana</button>
-      <button class="tab-btn" role="tab" data-tab="linee-guida">📖 Le 13 Direttive</button>
+      <button class="tab-btn active" role="tab" data-tab="consiglio">
+        <span class="tab-full">🗓️ Consiglio del Giorno</span>
+        <span class="tab-short">🗓️ Consiglio</span>
+      </button>
+      <button class="tab-btn" role="tab" data-tab="settimana">
+        <span class="tab-full">📋 Pianifica la Settimana</span>
+        <span class="tab-short">📋 Settimana</span>
+      </button>
+      <button class="tab-btn" role="tab" data-tab="linee-guida">
+        <span class="tab-full">📖 Le 13 Direttive</span>
+        <span class="tab-short">📖 Direttive</span>
+      </button>
     </nav>
   </div>
 </header>
