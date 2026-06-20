@@ -1094,9 +1094,9 @@ let consiglioIdx = -1;
 let consiglioOffset = 0;
 
 function renderConsiglio() {
-  const seed = seedFromDate() + consiglioOffset;
-  const rng = seedRandom(seed);
-  const idx = Math.floor(rng() * CONSIGLI.length);
+  const rng = seedRandom(seedFromDate());
+  const ordine = shuffle([...Array(CONSIGLI.length).keys()], rng);
+  const idx = ordine[consiglioOffset % CONSIGLI.length];
   const c = CONSIGLI[idx];
 
   document.getElementById('consiglio-emoji').textContent = c.emoji;

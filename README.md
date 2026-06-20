@@ -6,7 +6,9 @@ Webapp single-page basata sulle **Linee Guida per una Sana Alimentazione CREA 20
 
 ## Demo
 
-Aprire `index.html` direttamente nel browser oppure pubblicare su **GitHub Pages** (nessuna configurazione necessaria: basta abilitare Pages sulla branch `main`).
+🌐 **[https://matteopezzoli.github.io/linee_guida_alimentazione_sana/](https://matteopezzoli.github.io/linee_guida_alimentazione_sana/)**
+
+Oppure scarica il repository e apri `index.html` direttamente nel browser — nessuna configurazione necessaria.
 
 ## Funzionalità
 
