@@ -452,6 +452,161 @@
     .text-muted { color: #888; font-size: 13px; }
     .mt-4 { margin-top: 16px; }
     .mb-2 { margin-bottom: 8px; }
+
+    /* ─── PRINT LAYOUT (nascosto su schermo) ─────────── */
+    #print-layout { display: none; }
+
+    @media print {
+      @page { size: A4; margin: 12mm 14mm 14mm; }
+
+      header, main, footer, .toast, .skip-link, #print-layout ~ * { display: none !important; }
+
+      body {
+        background: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 9pt;
+        color: #1E2D22;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      #print-layout { display: block !important; }
+
+      /* Header del documento */
+      .pl-header {
+        background: #4A7C59;
+        color: #fff;
+        border-radius: 10px;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .pl-header-left { display: flex; align-items: center; gap: 10px; }
+      .pl-logo { font-size: 22pt; line-height: 1; }
+      .pl-title { font-family: 'Playfair Display', serif; font-size: 16pt; font-weight: 700; line-height: 1.1; }
+      .pl-subtitle { font-size: 7.5pt; opacity: 0.85; margin-top: 2px; letter-spacing: 0.5px; }
+      .pl-meta { text-align: right; font-size: 8pt; line-height: 1.8; opacity: 0.9; }
+      .pl-meta strong { font-size: 9pt; }
+
+      /* Grid giorni: 2 colonne */
+      .pl-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .pl-day {
+        border: 1.5px solid #C8DDD0;
+        border-radius: 8px;
+        overflow: hidden;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .pl-day-header {
+        background: #4A7C59;
+        color: #fff;
+        padding: 6px 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .pl-day-emoji { font-size: 11pt; }
+      .pl-day-name { font-weight: 700; font-size: 9.5pt; flex: 1; }
+      .pl-day-body { padding: 6px 10px; background: #fff; }
+      .pl-meal {
+        display: flex;
+        gap: 6px;
+        padding: 3.5px 0;
+        border-bottom: 0.5px solid #E8DDD0;
+        align-items: flex-start;
+      }
+      .pl-meal:last-child { border-bottom: none; }
+      .pl-meal-label {
+        font-size: 6.5pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: #6B7280;
+        min-width: 52px;
+        padding-top: 1px;
+        flex-shrink: 0;
+      }
+      .pl-meal-desc { font-size: 8pt; color: #1E2D22; line-height: 1.4; flex: 1; }
+
+      /* Domenica: larghezza piena */
+      .pl-day.pl-sunday { grid-column: 1 / -1; }
+      .pl-sunday .pl-day-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0;
+      }
+      .pl-sunday .pl-meal { padding: 4px 6px; border-bottom: none; border-right: 0.5px solid #E8DDD0; }
+      .pl-sunday .pl-meal:last-child { border-right: none; }
+
+      /* Riepilogo obiettivi */
+      .pl-summary {
+        border: 1.5px solid #C8DDD0;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .pl-summary-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 10pt;
+        font-weight: 700;
+        color: #1E2D22;
+        margin-bottom: 8px;
+      }
+      .pl-ob-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+      .pl-ob-item {
+        border-radius: 6px;
+        padding: 8px 10px;
+        text-align: center;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .pl-ob-item.verde  { background: #E8F8ED; border: 1.5px solid #6CBF80; }
+      .pl-ob-item.arancio { background: #FEF0E6; border: 1.5px solid #E8A06A; }
+      .pl-ob-item.rosso  { background: #FDE8E8; border: 1.5px solid #D97575; }
+      .pl-ob-emoji { font-size: 14pt; display: block; margin-bottom: 2px; }
+      .pl-ob-num { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 700; line-height: 1; }
+      .pl-ob-item.verde  .pl-ob-num { color: #1A5C35; }
+      .pl-ob-item.arancio .pl-ob-num { color: #8C4010; }
+      .pl-ob-item.rosso  .pl-ob-num { color: #7A0F0F; }
+      .pl-ob-label { font-size: 7pt; font-weight: 600; color: #4B5563; margin-top: 2px; }
+      .pl-ob-target { font-size: 6.5pt; color: #6B7280; margin-top: 1px; }
+      .pl-ob-status { font-size: 12pt; margin-top: 2px; }
+
+      /* Footer */
+      .pl-footer {
+        border-top: 1px solid #E2D8CC;
+        padding-top: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-size: 6.5pt;
+        color: #6B7280;
+        line-height: 1.5;
+      }
+      .pl-disclaimer {
+        background: #F7F3EE;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 6pt;
+        color: #6B7280;
+        max-width: 60%;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
   </style>
 </head>
 <body>
@@ -530,7 +685,7 @@
 
       <div class="btn-row">
         <button class="btn btn-primary" id="btn-genera">🔄 Genera piano settimanale</button>
-        <button class="btn btn-arancio" id="btn-esporta">📥 Esporta come testo</button>
+        <button class="btn btn-arancio" id="btn-esporta">📄 Esporta come PDF</button>
       </div>
     </div>
 
@@ -1333,36 +1488,59 @@ document.getElementById('btn-esporta').addEventListener('click', () => {
     alert('Genera prima il piano settimanale!');
     return;
   }
-  let testo = '🥗 MANGIO BENE – Piano Alimentare Settimanale\n';
-  testo += `Basato sulle Linee Guida per una Sana Alimentazione CREA 2018\n`;
-  testo += `Profilo: ${PROFILI[profiloSelezionato].label}\n`;
-  testo += `Generato il: ${new Date().toLocaleDateString('it-IT')}\n`;
-  testo += '═'.repeat(50) + '\n\n';
 
-  pianoCorrente.forEach((giorno, idx) => {
-    testo += `${GIORNI_NOMI[idx].toUpperCase()}\n`;
-    testo += `  ☀️  Colazione:  ${giorno.colazione}\n`;
-    testo += `  🍎  Spuntino:   ${giorno.spMattina}\n`;
-    testo += `  🍽️  Pranzo:     ${giorno.pranzo}\n`;
-    testo += `  🍊  Merenda:    ${giorno.spPomeriggio}\n`;
-    testo += `  🌙  Cena:       ${giorno.cena}\n`;
-    testo += '\n';
-  });
+  const profilo   = PROFILI[profiloSelezionato];
+  const stagione  = getStagioneCorrente();
+  const stagioneLabel = { primavera:'🌸 Primavera', estate:'☀️ Estate', autunno:'🍂 Autunno', inverno:'❄️ Inverno' }[stagione] || stagione;
+  const oggi      = new Date().toLocaleDateString('it-IT', { day:'numeric', month:'long', year:'numeric' });
+  const ob        = contaObiettivi(pianoCorrente);
 
-  testo += '─'.repeat(50) + '\n';
-  testo += '⚕️  Questa app è a scopo informativo e non sostituisce\n';
-  testo += '    il parere di un medico o nutrizionista.\n';
-  testo += 'Fonte: CREA – Centro di Ricerca Alimenti e Nutrizione (2018)\n';
+  // Semafori obiettivi
+  const clVerdura = ob.verduraFrutta >= 35 ? 'verde' : ob.verduraFrutta >= 28 ? 'arancio' : 'rosso';
+  const icVerdura = ob.verduraFrutta >= 35 ? '✅' : ob.verduraFrutta >= 28 ? '⚠️' : '❌';
+  const clPesce   = ob.pesce >= 2 && ob.pesce <= 3 ? 'verde' : ob.pesce >= 1 ? 'arancio' : 'rosso';
+  const icPesce   = ob.pesce >= 2 && ob.pesce <= 3 ? '✅' : ob.pesce >= 1 ? '⚠️' : '❌';
+  const clLegumi  = ob.legumi >= 4 && ob.legumi <= 6 ? 'verde' : ob.legumi >= 2 ? 'arancio' : 'rosso';
+  const icLegumi  = ob.legumi >= 4 && ob.legumi <= 6 ? '✅' : ob.legumi >= 2 ? '⚠️' : '❌';
 
-  const blob = new Blob([testo], { type: 'text/plain;charset=utf-8' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = 'piano-alimentare-mangio-bene.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  // Genera le card dei giorni
+  const giorni = pianoCorrente.map((g, i) => {
+    const isSunday = i === 6;
+    return `
+      <div class="pl-day${isSunday ? ' pl-sunday' : ''}">
+        <div class="pl-day-header">
+          <span class="pl-day-emoji">${GIORNI_EMOJI[i]}</span>
+          <span class="pl-day-name">${GIORNI_NOMI[i]}</span>
+        </div>
+        <div class="pl-day-body">
+          <div class="pl-meal"><span class="pl-meal-label">☀️ Colazione</span><span class="pl-meal-desc">${g.colazione}</span></div>
+          <div class="pl-meal"><span class="pl-meal-label">🍎 Spuntino</span><span class="pl-meal-desc">${g.spMattina}</span></div>
+          <div class="pl-meal"><span class="pl-meal-label">🍽️ Pranzo</span><span class="pl-meal-desc">${g.pranzo}</span></div>
+          <div class="pl-meal"><span class="pl-meal-label">🍊 Merenda</span><span class="pl-meal-desc">${g.spPomeriggio}</span></div>
+          <div class="pl-meal"><span class="pl-meal-label">🌙 Cena</span><span class="pl-meal-desc">${g.cena}</span></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('pl-profilo-label').innerHTML = `<strong>${profilo.label}</strong>`;
+  document.getElementById('pl-stagione-label').textContent = stagioneLabel;
+  document.getElementById('pl-data-label').textContent = oggi;
+  document.getElementById('pl-giorni').innerHTML = giorni;
+
+  // Obiettivi
+  document.getElementById('pl-ob-verdura-num').textContent = ob.verduraFrutta;
+  document.getElementById('pl-ob-verdura-icon').textContent = icVerdura;
+  document.getElementById('pl-ob-verdura').className = `pl-ob-item ${clVerdura}`;
+  document.getElementById('pl-ob-pesce-num').textContent = ob.pesce;
+  document.getElementById('pl-ob-pesce-icon').textContent = icPesce;
+  document.getElementById('pl-ob-pesce').className = `pl-ob-item ${clPesce}`;
+  document.getElementById('pl-ob-legumi-num').textContent = ob.legumi;
+  document.getElementById('pl-ob-legumi-icon').textContent = icLegumi;
+  document.getElementById('pl-ob-legumi').className = `pl-ob-item ${clLegumi}`;
+  document.getElementById('pl-summary').style.display = '';
+
+  window.print();
 });
 
 // ──────────────────────────────────────────────────────────────
@@ -1415,6 +1593,63 @@ if (pianoCachato) {
   renderPiano(pianoCorrente);
 }
 </script>
+
+<!-- ═══════════════════ PRINT LAYOUT ═══════════════════ -->
+<div id="print-layout">
+  <div class="pl-header">
+    <div class="pl-header-left">
+      <span class="pl-logo">🥗</span>
+      <div>
+        <div class="pl-title">Mangio Bene</div>
+        <div class="pl-subtitle">Piano Alimentare Settimanale · Linee Guida CREA 2018</div>
+      </div>
+    </div>
+    <div class="pl-meta">
+      <div id="pl-profilo-label"></div>
+      <div id="pl-stagione-label"></div>
+      <div id="pl-data-label"></div>
+    </div>
+  </div>
+
+  <div class="pl-grid" id="pl-giorni"></div>
+
+  <div class="pl-summary" id="pl-summary" style="display:none;">
+    <div class="pl-summary-title">📊 Riepilogo Obiettivi Settimanali CREA</div>
+    <div class="pl-ob-grid">
+      <div class="pl-ob-item verde" id="pl-ob-verdura">
+        <span class="pl-ob-emoji">🥦</span>
+        <div class="pl-ob-num" id="pl-ob-verdura-num">0</div>
+        <div class="pl-ob-label">Verdura &amp; Frutta</div>
+        <div class="pl-ob-target">Obiettivo: ≥ 35 porz./sett.</div>
+        <div class="pl-ob-status" id="pl-ob-verdura-icon"></div>
+      </div>
+      <div class="pl-ob-item verde" id="pl-ob-pesce">
+        <span class="pl-ob-emoji">🐟</span>
+        <div class="pl-ob-num" id="pl-ob-pesce-num">0</div>
+        <div class="pl-ob-label">Porzioni Pesce</div>
+        <div class="pl-ob-target">Obiettivo: 2–3 porz./sett.</div>
+        <div class="pl-ob-status" id="pl-ob-pesce-icon"></div>
+      </div>
+      <div class="pl-ob-item verde" id="pl-ob-legumi">
+        <span class="pl-ob-emoji">🫘</span>
+        <div class="pl-ob-num" id="pl-ob-legumi-num">0</div>
+        <div class="pl-ob-label">Porzioni Legumi</div>
+        <div class="pl-ob-target">Obiettivo: 4–6 porz./sett.</div>
+        <div class="pl-ob-status" id="pl-ob-legumi-icon"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pl-footer">
+    <div>
+      <strong>Fonte:</strong> Centro di Ricerca Alimenti e Nutrizione (CREA) — Revisione 2018 (agg. novembre 2019)<br>
+      Approvate dal Consiglio Scientifico del CREA il 3 aprile 2019
+    </div>
+    <div class="pl-disclaimer">
+      ⚕️ Questo piano è a scopo informativo e <strong>non sostituisce</strong> il parere di un medico o nutrizionista.
+    </div>
+  </div>
+</div>
 
 <!--
   Mangio Bene - Webapp basata sulle Linee Guida per una Sana Alimentazione CREA 2018
