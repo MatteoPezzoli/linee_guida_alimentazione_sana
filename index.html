@@ -456,158 +456,78 @@
     .mb-2 { margin-bottom: 8px; }
 
     /* ─── PRINT LAYOUT (nascosto su schermo) ─────────── */
+    /* ── Print layout: sempre stilizzato (serve anche a html2canvas) ── */
     #print-layout { display: none; }
+
+    .pl-header {
+      background: #4A7C59; color: #fff; border-radius: 10px;
+      padding: 14px 20px; display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 12px;
+    }
+    .pl-header-left { display: flex; align-items: center; gap: 10px; }
+    .pl-logo { font-size: 22pt; line-height: 1; }
+    .pl-title { font-family: 'Playfair Display', serif; font-size: 16pt; font-weight: 700; line-height: 1.1; }
+    .pl-subtitle { font-size: 7.5pt; opacity: 0.85; margin-top: 2px; letter-spacing: 0.5px; }
+    .pl-meta { text-align: right; font-size: 8pt; line-height: 1.8; opacity: 0.9; }
+    .pl-meta strong { font-size: 9pt; }
+
+    .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+    .pl-day { border: 1.5px solid #C8DDD0; border-radius: 8px; overflow: hidden; }
+    .pl-day-header {
+      background: #4A7C59; color: #fff; padding: 6px 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pl-day-emoji { font-size: 11pt; }
+    .pl-day-name { font-weight: 700; font-size: 9.5pt; flex: 1; }
+    .pl-day-body { padding: 6px 10px; background: #fff; }
+    .pl-meal { display: flex; gap: 6px; padding: 3.5px 0; border-bottom: 0.5px solid #E8DDD0; align-items: flex-start; }
+    .pl-meal:last-child { border-bottom: none; }
+    .pl-meal-label {
+      font-size: 6.5pt; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.3px; color: #6B7280; min-width: 52px; padding-top: 1px; flex-shrink: 0;
+    }
+    .pl-meal-desc { font-size: 8pt; color: #1E2D22; line-height: 1.4; flex: 1; }
+
+    .pl-day.pl-sunday { grid-column: 1 / -1; }
+    .pl-sunday .pl-day-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+    .pl-sunday .pl-meal { padding: 4px 6px; border-bottom: none; border-right: 0.5px solid #E8DDD0; }
+    .pl-sunday .pl-meal:last-child { border-right: none; }
+
+    .pl-summary { border: 1.5px solid #C8DDD0; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; }
+    .pl-summary-title { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 700; color: #1E2D22; margin-bottom: 8px; }
+    .pl-ob-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .pl-ob-item { border-radius: 6px; padding: 8px 10px; text-align: center; }
+    .pl-ob-item.verde  { background: #E8F8ED; border: 1.5px solid #6CBF80; }
+    .pl-ob-item.arancio { background: #FEF0E6; border: 1.5px solid #E8A06A; }
+    .pl-ob-item.rosso  { background: #FDE8E8; border: 1.5px solid #D97575; }
+    .pl-ob-emoji { font-size: 14pt; display: block; margin-bottom: 2px; }
+    .pl-ob-num { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 700; line-height: 1; }
+    .pl-ob-item.verde  .pl-ob-num { color: #1A5C35; }
+    .pl-ob-item.arancio .pl-ob-num { color: #8C4010; }
+    .pl-ob-item.rosso  .pl-ob-num { color: #7A0F0F; }
+    .pl-ob-label { font-size: 7pt; font-weight: 600; color: #4B5563; margin-top: 2px; }
+    .pl-ob-target { font-size: 6.5pt; color: #6B7280; margin-top: 1px; }
+    .pl-ob-status { font-size: 12pt; margin-top: 2px; }
+
+    .pl-footer {
+      border-top: 1px solid #E2D8CC; padding-top: 6px; display: flex;
+      justify-content: space-between; align-items: flex-start;
+      font-size: 6.5pt; color: #6B7280; line-height: 1.5;
+    }
+    .pl-disclaimer {
+      background: #F7F3EE; border-radius: 4px; padding: 4px 8px;
+      font-size: 6pt; color: #6B7280; max-width: 60%;
+    }
 
     @media print {
       @page { size: A4; margin: 12mm 14mm 14mm; }
-
       header, main, footer, .toast, .skip-link, #print-layout ~ * { display: none !important; }
-
-      body {
-        background: #fff;
-        font-family: 'Inter', sans-serif;
-        font-size: 9pt;
-        color: #1E2D22;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
+      body { background: #fff; font-family: 'Inter', sans-serif; font-size: 9pt; color: #1E2D22;
+             -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       #print-layout { display: block !important; }
-
-      /* Header del documento */
-      .pl-header {
-        background: #4A7C59;
-        color: #fff;
-        border-radius: 10px;
-        padding: 14px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .pl-header-left { display: flex; align-items: center; gap: 10px; }
-      .pl-logo { font-size: 22pt; line-height: 1; }
-      .pl-title { font-family: 'Playfair Display', serif; font-size: 16pt; font-weight: 700; line-height: 1.1; }
-      .pl-subtitle { font-size: 7.5pt; opacity: 0.85; margin-top: 2px; letter-spacing: 0.5px; }
-      .pl-meta { text-align: right; font-size: 8pt; line-height: 1.8; opacity: 0.9; }
-      .pl-meta strong { font-size: 9pt; }
-
-      /* Grid giorni: 2 colonne */
-      .pl-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-bottom: 10px;
-      }
-      .pl-day {
-        border: 1.5px solid #C8DDD0;
-        border-radius: 8px;
-        overflow: hidden;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-      .pl-day-header {
-        background: #4A7C59;
-        color: #fff;
-        padding: 6px 10px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .pl-day-emoji { font-size: 11pt; }
-      .pl-day-name { font-weight: 700; font-size: 9.5pt; flex: 1; }
-      .pl-day-body { padding: 6px 10px; background: #fff; }
-      .pl-meal {
-        display: flex;
-        gap: 6px;
-        padding: 3.5px 0;
-        border-bottom: 0.5px solid #E8DDD0;
-        align-items: flex-start;
-      }
-      .pl-meal:last-child { border-bottom: none; }
-      .pl-meal-label {
-        font-size: 6.5pt;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-        color: #6B7280;
-        min-width: 52px;
-        padding-top: 1px;
-        flex-shrink: 0;
-      }
-      .pl-meal-desc { font-size: 8pt; color: #1E2D22; line-height: 1.4; flex: 1; }
-
-      /* Domenica: larghezza piena */
-      .pl-day.pl-sunday { grid-column: 1 / -1; }
-      .pl-sunday .pl-day-body {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 0;
-      }
-      .pl-sunday .pl-meal { padding: 4px 6px; border-bottom: none; border-right: 0.5px solid #E8DDD0; }
-      .pl-sunday .pl-meal:last-child { border-right: none; }
-
-      /* Riepilogo obiettivi */
-      .pl-summary {
-        border: 1.5px solid #C8DDD0;
-        border-radius: 8px;
-        padding: 10px 14px;
-        margin-bottom: 10px;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-      .pl-summary-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 10pt;
-        font-weight: 700;
-        color: #1E2D22;
-        margin-bottom: 8px;
-      }
-      .pl-ob-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-      .pl-ob-item {
-        border-radius: 6px;
-        padding: 8px 10px;
-        text-align: center;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .pl-ob-item.verde  { background: #E8F8ED; border: 1.5px solid #6CBF80; }
-      .pl-ob-item.arancio { background: #FEF0E6; border: 1.5px solid #E8A06A; }
-      .pl-ob-item.rosso  { background: #FDE8E8; border: 1.5px solid #D97575; }
-      .pl-ob-emoji { font-size: 14pt; display: block; margin-bottom: 2px; }
-      .pl-ob-num { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 700; line-height: 1; }
-      .pl-ob-item.verde  .pl-ob-num { color: #1A5C35; }
-      .pl-ob-item.arancio .pl-ob-num { color: #8C4010; }
-      .pl-ob-item.rosso  .pl-ob-num { color: #7A0F0F; }
-      .pl-ob-label { font-size: 7pt; font-weight: 600; color: #4B5563; margin-top: 2px; }
-      .pl-ob-target { font-size: 6.5pt; color: #6B7280; margin-top: 1px; }
-      .pl-ob-status { font-size: 12pt; margin-top: 2px; }
-
-      /* Footer */
-      .pl-footer {
-        border-top: 1px solid #E2D8CC;
-        padding-top: 6px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        font-size: 6.5pt;
-        color: #6B7280;
-        line-height: 1.5;
-      }
-      .pl-disclaimer {
-        background: #F7F3EE;
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 6pt;
-        color: #6B7280;
-        max-width: 60%;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+      .pl-header, .pl-day-header, .pl-ob-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .pl-day { page-break-inside: avoid; break-inside: avoid; }
+      .pl-summary { page-break-inside: avoid; break-inside: avoid; }
     }
   </style>
 </head>
