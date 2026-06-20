@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     :root {
       --verde-salvia: #4A7C59;
@@ -1483,7 +1485,7 @@ document.getElementById('btn-genera').addEventListener('click', () => {
   renderPiano(pianoCorrente);
 });
 
-document.getElementById('btn-esporta').addEventListener('click', () => {
+document.getElementById('btn-esporta').addEventListener('click', async () => {
   if (!pianoCorrente) {
     alert('Genera prima il piano settimanale!');
     return;
@@ -1540,7 +1542,46 @@ document.getElementById('btn-esporta').addEventListener('click', () => {
   document.getElementById('pl-ob-legumi').className = `pl-ob-item ${clLegumi}`;
   document.getElementById('pl-summary').style.display = '';
 
-  window.print();
+  // Rendi visibile il layout fuori schermo per la renderizzazione
+  const el = document.getElementById('print-layout');
+  el.style.cssText = 'display:block!important;position:fixed;top:-9999px;left:0;width:794px;background:#fff;padding:14mm;box-sizing:border-box;font-family:Inter,sans-serif;font-size:9pt;color:#1E2D22;';
+
+  const btn = document.getElementById('btn-esporta');
+  btn.textContent = '⏳ Generazione PDF…';
+  btn.disabled = true;
+
+  try {
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      logging: false
+    });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = 210;
+    const pageH = 297;
+    const imgData = canvas.toDataURL('image/jpeg', 0.93);
+    const imgH = (canvas.height / canvas.width) * pageW;
+
+    if (imgH <= pageH) {
+      pdf.addImage(imgData, 'JPEG', 0, 0, pageW, imgH);
+    } else {
+      let yPos = 0;
+      while (yPos < imgH) {
+        pdf.addImage(imgData, 'JPEG', 0, -yPos, pageW, imgH);
+        yPos += pageH;
+        if (yPos < imgH) pdf.addPage();
+      }
+    }
+
+    pdf.save('piano-alimentare-mangio-bene.pdf');
+  } finally {
+    el.style.cssText = '';
+    btn.textContent = '📄 Esporta come PDF';
+    btn.disabled = false;
+  }
 });
 
 // ──────────────────────────────────────────────────────────────
